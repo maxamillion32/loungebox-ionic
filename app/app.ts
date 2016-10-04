@@ -4,9 +4,10 @@ import { StatusBar } from 'ionic-native';
 import { TabsPage } from './pages/tabs/tabs';
 import  {MenuPage} from './pages/menu/menu'
 import {DataService} from './providers/data-service/data-service';
+import {PouchdbService}  from './providers/pouchdb-service/pouchdb-service';
 @Component({
   template: '<ion-nav [root]="rootPage"></ion-nav>',
-  providers:[DataService]
+  providers:[DataService,PouchdbService]
 })
 export class MyApp {
 

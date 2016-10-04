@@ -11,19 +11,25 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/toPromise';
 
 import {DataService} from '../../providers/data-service/data-service';
+import {PouchdbService}  from '../../providers/pouchdb-service/pouchdb-service';
 
 @Component({
   templateUrl: 'build/pages/food/food.html'
 })
 export class FoodPage implements OnInit {
   public heroes :String[];
-  constructor(public navCtrl: NavController,private http:Http, private ds:DataService) {
+  constructor(public navCtrl: NavController,private http:Http, private ds:DataService, private pouch:PouchdbService) {
    console.log(ds);
-   ds.createData();
+   //ds.createData();
+    pouch.getTodos().then(function(){
+
+
+      pouch.createTodo({name:'first tpodo'});
+    });
   }
   ngOnInit(){
     console.log("inside on init");
-    this.getHeroes().subscribe(x=>this.heroes=x);;
+    //this.getHeroes().subscribe(x=>this.heroes=x);;
    
 
   }

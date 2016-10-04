@@ -41,7 +41,7 @@ export class DataService implements ISQLDataService,OnInit  {
    public createData(){
         let db = new SQLite();
         console.log('OPening db');
-           return db.openDatabase({
+           db.openDatabase({
                 name: "data.db",
                 location: "default"
             }).then(() => {
