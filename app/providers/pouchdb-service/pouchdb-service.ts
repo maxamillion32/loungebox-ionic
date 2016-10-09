@@ -16,7 +16,7 @@ export class PouchdbService {
     this.db = new PouchDB('loungebox');
     //this.db.info().then(console.log.bind(console));  
  
-    this.remote =new PouchDB('http://127.0.0.1:5984/loungebox');
+    this.remote =new PouchDB('http://anwar:anwar@localhost:5984/loungebox');
  
     let options = {
       live: true
@@ -28,7 +28,9 @@ export class PouchdbService {
     
  //PouchDB.replicate('mydb', 'http://localhost:5984/mydb');
     this.db.sync(this.remote)
+    
     .on('error', function (err) {
+      debugger;
       console.log('erro sync'+JSON.stringify(err));
       
   // handle error

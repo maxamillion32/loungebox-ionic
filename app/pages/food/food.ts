@@ -12,15 +12,20 @@ import 'rxjs/add/operator/toPromise';
 
 import {DataService} from '../../providers/data-service/data-service';
 import {PouchdbService}  from '../../providers/pouchdb-service/pouchdb-service';
+import {FoodDetailPage} from '../food-detail/food-detail';
+
 
 @Component({
   templateUrl: 'build/pages/food/food.html'
 })
 export class FoodPage implements OnInit {
   public heroes :String[];
+  nav:NavController;
+
   constructor(public navCtrl: NavController,private http:Http, private ds:DataService, private pouch:PouchdbService) {
    console.log(ds);
    //ds.createData();
+   this.nav = navCtrl;
     pouch.getTodos().then(function(){
 
 
@@ -29,7 +34,7 @@ export class FoodPage implements OnInit {
   }
   ngOnInit(){
     console.log("inside on init");
-    //this.getHeroes().subscribe(x=>this.heroes=x);;
+    this.getHeroes().subscribe(x=>this.heroes=x);;
    
 
   }
@@ -42,9 +47,12 @@ export class FoodPage implements OnInit {
                     .catch(this.handleError);
   }
 
-showDetail(){
+showDetail(item){
 
   console.log('inside button');
+    this.nav.push(FoodDetailPage, {
+      item: item
+    });
 }
 
    private extractData(res: Response) {

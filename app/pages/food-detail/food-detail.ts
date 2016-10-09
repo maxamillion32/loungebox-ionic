@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,NavParams } from 'ionic-angular';
 
 /*
   Generated class for the FoodDetailPage page.
@@ -12,8 +12,13 @@ import { NavController } from 'ionic-angular';
 })
 export class FoodDetailPage {
 
-  constructor(private navCtrl: NavController) {
+hero :any;
 
+
+  constructor(private navCtrl: NavController,navParams:NavParams) {
+      console.log('NavController:' + JSON.stringify(navCtrl.id));
+      
+      this.hero = navParams.get('item');
   }
 
 }

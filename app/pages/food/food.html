@@ -34,7 +34,7 @@
   
 <ion-content class="card-background-page">
     
-    <ion-card *ngFor="let hero of heroes">
+    <ion-card *ngFor="let hero of heroes" (click)="showDetail(hero)">
       <ion-card>
 
         <ion-slides>
@@ -65,7 +65,7 @@
           3/4
         </button>
       </ion-col>
-      <ion-col text-center (click)="showDetail()">
+      <ion-col text-center >
         <button clear small danger>
           <ion-icon name='musical-notes'></ion-icon>
           Follow Lounge
