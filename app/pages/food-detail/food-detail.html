@@ -7,19 +7,20 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>foodDetail</ion-title>
+    <!--<ion-title>{{hero.name}</ion-title>-->
   </ion-navbar>
 
 </ion-header>
 <ion-content>
 <!--<img src="build/images/food.png" />-->
+
 <div class="card-title">Biriyani</div>
 <div class="card-subtitle" text-right>by {{hero.name}} and party</div>
 <ion-row padding>
   <ion-col>
     <button clear small danger>
           <ion-icon name='star'></ion-icon>
-          Requestget this
+          Request this
         </button>
   </ion-col>
   <ion-col>
@@ -40,4 +41,17 @@
     </ion-note>
   </ion-col>
 </ion-row>
+
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <p>Ash, Misty, Brock</p>
+    <ion-buttons end>
+      <button ion-button color="royal">
+        Send
+        <ion-icon name="send"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
