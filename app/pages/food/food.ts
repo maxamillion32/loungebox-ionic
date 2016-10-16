@@ -26,11 +26,11 @@ export class FoodPage implements OnInit {
    console.log(ds);
    //ds.createData();
    this.nav = navCtrl;
-    pouch.getTodos().then(function(){
+    // pouch.getTodos().then(function(){
 
 
-      pouch.createTodo({name:'first tpodo'});
-    });
+    //   pouch.createTodo({name:'first tpodo'});
+    // });
   }
   ngOnInit(){
     console.log("inside on init");
@@ -42,9 +42,26 @@ export class FoodPage implements OnInit {
   getHeroes (): Observable<String[]> {
     console.log("inside get heroes");
     //return null;
+   let foods = this.http.get('https://192.168.0.21:3000/api/foods').map(
+
+      function(r){
+        console.log('Inside food call ' + JSON.stringify(r));
+        
+      }
+    ).catch(function(err){console.log("Inside food erro" + err);
+      return Observable.throw(err);
+    });
+
+    foods.subscribe(function(foods){
+
+        
+
+    });
     return this.http.get("http://jsonplaceholder.typicode.com/users")
                     .map(this.extractData)
                     .catch(this.handleError);
+
+          
   }
 
 showDetail(item){
