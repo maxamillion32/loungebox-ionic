@@ -1,84 +1,83 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons start>
-      <button>
+	<ion-toolbar padding>
+		<ion-buttons start>
+			<button>
         <ion-icon name="create"></ion-icon>
       </button>
-    </ion-buttons>
-   
-    <ion-buttons end>
-      <button>
+		</ion-buttons>
+
+		<ion-buttons end>
+			<button>
         <ion-icon name="more"></ion-icon>
       </button>
-    </ion-buttons>
-    <ion-segment>
-      <ion-segment-button value="new">
-        nearby
-      </ion-segment-button>
-      <ion-segment-button value="hot">
-        my lounges
-      </ion-segment-button>
-      <ion-segment-button value="today">
-        today
-      </ion-segment-button>
-      <ion-segment-button value="tomorrow">
-        tomorrow
-      </ion-segment-button>
-    </ion-segment>
-  </ion-toolbar>
- 
+		</ion-buttons>
+		<ion-segment [(ngModel)]="whereFilter">
+			<ion-segment-button color="primary" value="nearby">
+				nearby
+			</ion-segment-button>
+			<ion-segment-button value="mylounges">
+				my lounges
+			</ion-segment-button>
+			<ion-segment-button value="today">
+				today
+			</ion-segment-button>
+			<ion-segment-button value="tomorrow">
+				tomorrow
+			</ion-segment-button>
+		</ion-segment>
+	</ion-toolbar>
+
 
 </ion-header>
 
- 
-  
-<ion-content class="card-background-page">
-    
-    <ion-card *ngFor="let hero of heroes" (click)="showDetail(hero)">
-      <ion-card>
 
-        <ion-slides>
-  <ion-slide>
-    <h1>Slide 1</h1>
-  </ion-slide>
-  <ion-slide>
-    <h1>Slide 2</h1>
-  </ion-slide>
-  <ion-slide>
-    <p>Slide 3</p>
-  </ion-slide>
-</ion-slides>
-      </ion-card>
-        <img src="build/images/food.png" />
-        <div class="card-title">Biriyani</div>
-        <div class="card-subtitle" text-right>by {{hero.name}} and party</div>
-          <ion-row no-padding>
-      <ion-col>
-        <button clear small danger>
+
+<ion-content class="card-background-page">
+	<ion-card *ngFor="let hero of heroes" (click)="showDetail(hero)">
+		<ion-card>
+
+			<ion-slides>
+				<ion-slide>
+					<h1>Slide 1</h1>
+				</ion-slide>
+				<ion-slide>
+					<h1>Slide 2</h1>
+				</ion-slide>
+				<ion-slide>
+					<p>Slide 3</p>
+				</ion-slide>
+			</ion-slides>
+		</ion-card>
+		<img src="build/images/food.png" />
+		<div class="card-title">Biriyani</div>
+		<div class="card-subtitle" text-right>by {{hero.name}} and party</div>
+		<ion-row no-padding>
+			<ion-col>
+				<button clear small danger>
           <ion-icon name='star'></ion-icon>
           Requestget this
         </button>
-      </ion-col>
-      <ion-col>
-        <button clear small danger>
+			</ion-col>
+			<ion-col>
+				<button clear small danger>
           <ion-icon name='star'></ion-icon>
           3/4
         </button>
-      </ion-col>
-      <ion-col text-center >
-        <button clear small danger>
+			</ion-col>
+			<ion-col text-center>
+				<button clear small danger>
           <ion-icon name='musical-notes'></ion-icon>
           Follow Lounge
         </button>
-      </ion-col>
-      <ion-col text-right>
-        <ion-note>
-        11h ago
-      </ion-note>
-      </ion-col>
-    </ion-row>
-    </ion-card>
+			</ion-col>
+			<ion-col text-right>
+				<ion-note>
+					11h ago
+				</ion-note>
+			</ion-col>
+		</ion-row>
+	</ion-card>
 
-    
+
 
 </ion-content>

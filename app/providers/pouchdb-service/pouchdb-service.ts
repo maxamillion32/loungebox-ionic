@@ -16,7 +16,7 @@ export class PouchdbService {
     this.db = new PouchDB('loungebox');
     //this.db.info().then(console.log.bind(console));  
  
-    this.remote =new PouchDB('http://anwar:anwar@localhost:5984/loungebox');
+    this.remote =new PouchDB('http://anwar:anwar@192.168.0.21:5984/loungebox');
  
     let options = {
       live: true

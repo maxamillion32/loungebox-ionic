@@ -21,14 +21,13 @@ import {FoodDetailPage} from '../food-detail/food-detail';
 export class FoodPage implements OnInit {
   public heroes :String[];
   nav:NavController;
-
+  whereFilter:string;
   constructor(public navCtrl: NavController,private http:Http, private ds:DataService, private pouch:PouchdbService) {
    console.log(ds);
    //ds.createData();
    this.nav = navCtrl;
     // pouch.getTodos().then(function(){
-
-
+      
     //   pouch.createTodo({name:'first tpodo'});
     // });
   }
@@ -36,13 +35,16 @@ export class FoodPage implements OnInit {
     console.log("inside on init");
     this.getHeroes().subscribe(x=>this.heroes=x);;
    
+   this.pouch.createTodo({name:'hello there'});
+
+   this.whereFilter = "nearby";
 
   }
   
   getHeroes (): Observable<String[]> {
     console.log("inside get heroes");
     //return null;
-   let foods = this.http.get('https://192.168.0.21:3000/api/foods').map(
+   let foods = this.http.get('http://192.168.0.21:44350/api/foods').map(
 
       function(r){
         console.log('Inside food call ' + JSON.stringify(r));
