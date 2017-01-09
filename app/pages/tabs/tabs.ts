@@ -3,6 +3,7 @@ import { HomePage } from '../home/home';
 import { AboutPage } from '../about/about';
 import { ContactPage } from '../contact/contact';
 import { FoodPage } from '../food/food';
+import {FoodPostPage} from '../food-post/food-post';
 
 @Component({
   templateUrl: 'build/pages/tabs/tabs.html'
@@ -20,6 +21,6 @@ export class TabsPage {
     this.tab1Root = FoodPage;
     this.tab2Root = HomePage;
     this.tab3Root = AboutPage;
-    this.tab4Root = ContactPage;
+    this.tab4Root = FoodPostPage;
   }
 }

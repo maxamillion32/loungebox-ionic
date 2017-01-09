@@ -6,52 +6,96 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <!--<ion-title>{{hero.name}</ion-title>-->
-  </ion-navbar>
+	<ion-navbar>
+		<!--<ion-title>{{hero.name}</ion-title>-->
+	</ion-navbar>
 
 </ion-header>
 <ion-content>
-<!--<img src="build/images/food.png" />-->
+	<!--<img src="build/images/food.png" />-->
 
-<div class="card-title">Biriyani</div>
-<div class="card-subtitle" text-right>by {{hero.name}} and party</div>
-<ion-row padding>
-  <ion-col>
-    <button clear small danger>
+	<h1 >{{food.Name}}</h1>
+	<h3  text-right>by {{food.ClubberID}}</h3>
+	<ion-row padding>
+		<ion-col>
+			<button clear small danger>
           <ion-icon name='star'></ion-icon>
           Request this
         </button>
-  </ion-col>
-  <ion-col>
-    <button clear small danger>
+		</ion-col>
+		<ion-col>
+			<button clear small danger>
           <ion-icon name='star'></ion-icon>
-          3/4
+          {{food.Portions}} portions left
         </button>
-  </ion-col>
-  <ion-col text-center>
-    <button clear small danger>
+		</ion-col>
+		<ion-col text-center>
+			<button clear small danger>
           <ion-icon name='musical-notes'></ion-icon>
           Follow Lounge
         </button>
-  </ion-col>
-  <ion-col text-right>
-    <ion-note>
-      11h ago
-    </ion-note>
-  </ion-col>
-</ion-row>
+		</ion-col>
+		<ion-col text-right>
+			<ion-note>
+				11h ago
+			</ion-note>
+		</ion-col>
+	</ion-row>
+	<ion-list>
+		<ion-list-header>
+			Ingredients
+		</ion-list-header>
+		<ion-item *ngFor="let ingr of food.Ingredients">
+			<ion-avatar item-left>
+				<img src="build/images/food.png">
+			</ion-avatar>
+			<h2>{{ingr.Name}}</h2>
+			<p>Spicy vegetable</p>
+			<ion-list>
+				<ion-list-header>
+					Best buys around you
+				</ion-list-header>
+				<ion-item *ngFor="let ingr of food.Ingredients">
+					<ion-avatar item-left>
+						<img src="build/images/food.png">
+					</ion-avatar>
+					<h2><AO class="com"></AO></h2>
+					<!--<p>Spicy vegetable</p>-->
 
+				</ion-item>
+        <ion-item *ngFor="let ingr of food.Ingredients">
+					<ion-avatar item-left>
+						<img src="build/images/food.png">
+					</ion-avatar>
+					<h2>TescoDirect</h2>
+					<!--<p>Spicy vegetable</p>-->
+
+				</ion-item>
+        <ion-item *ngFor="let ingr of food.Ingredients">
+					<ion-avatar item-left>
+						<img src="build/images/food.png">
+					</ion-avatar>
+					<h2>Amazon</h2>
+					<!--<p>Ugh. As if.</p>-->
+
+				</ion-item>
+			</ion-list>
+		</ion-item>
+	</ion-list>
+	<ion-card>
+
+
+	</ion-card>
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar>
-    <p>Ash, Misty, Brock</p>
-    <ion-buttons end>
-      <button ion-button color="royal">
-        Send
+	<ion-toolbar>
+		<p>Ash, Misty, Brock</p>
+		<ion-buttons end>
+			<button ion-button color="royal">
+        Request this food
         <ion-icon name="send"></ion-icon>
       </button>
-    </ion-buttons>
-  </ion-toolbar>
+		</ion-buttons>
+	</ion-toolbar>
 </ion-footer>

@@ -33,7 +33,7 @@
 
 
 <ion-content class="card-background-page">
-	<ion-card *ngFor="let hero of heroes" (click)="showDetail(hero)">
+	<ion-card *ngFor="let food of foods" (click)="showDetail(food)">
 		<ion-card>
 
 			<ion-slides>
@@ -49,19 +49,19 @@
 			</ion-slides>
 		</ion-card>
 		<img src="build/images/food.png" />
-		<div class="card-title">Biriyani</div>
-		<div class="card-subtitle" text-right>by {{hero.name}} and party</div>
+		<div class="card-title">{{food.Name}}</div>
+		<div class="card-subtitle" text-right>by {{food.ClubberID}} and party</div>
 		<ion-row no-padding>
 			<ion-col>
 				<button clear small danger>
           <ion-icon name='star'></ion-icon>
-          Requestget this
+          Request
         </button>
 			</ion-col>
 			<ion-col>
 				<button clear small danger>
           <ion-icon name='star'></ion-icon>
-          3/4
+          {{food.Portions}} portions left
         </button>
 			</ion-col>
 			<ion-col text-center>

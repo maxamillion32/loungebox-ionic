@@ -5,9 +5,11 @@ import { TabsPage } from './pages/tabs/tabs';
 import  {MenuPage} from './pages/menu/menu'
 import {DataService} from './providers/data-service/data-service';
 import {PouchdbService}  from './providers/pouchdb-service/pouchdb-service';
+import { GeoLocation } from './providers/geo-location/geo-location';
+
 @Component({
   template: '<ion-nav [root]="rootPage"></ion-nav>',
-  providers:[DataService,PouchdbService]
+  providers:[DataService,PouchdbService,GeoLocation]
 })
 export class MyApp {
 

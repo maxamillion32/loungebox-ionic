@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-
+import { ModalController, NavParams } from 'ionic-angular';
+import {LoungeSelectionPage} from '../lounge-selection/lounge-selection';
 /*
   Generated class for the FoodPostPage page.
 
@@ -12,8 +13,13 @@ import { NavController } from 'ionic-angular';
 })
 export class FoodPostPage {
 
-  constructor(private navCtrl: NavController) {
+  constructor(private navCtrl: NavController,public modalCtrl: ModalController) {
 
   }
+
+  presentWhenModal() {
+   let whenModal = this.modalCtrl.create(LoungeSelectionPage, { userId: 8675309 });
+   whenModal.present();
+ }
 
 }

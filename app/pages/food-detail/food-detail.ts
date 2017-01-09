@@ -12,13 +12,13 @@ import { NavController,NavParams } from 'ionic-angular';
 })
 export class FoodDetailPage {
 
-hero :any;
+food :any;
 
 
   constructor(private navCtrl: NavController,navParams:NavParams) {
       console.log('NavController:' + JSON.stringify(navCtrl.id));
       
-      this.hero = navParams.get('item');
+      this.food = navParams.get('item');
   }
 
 }

@@ -1,32 +1,90 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons start>
-      <button ion-button icon-only color="royal">
+	<ion-toolbar>
+		<ion-buttons start>
+			<button ion-button icon-only color="royal">
         <ion-icon name="search"></ion-icon>
       </button>
-    </ion-buttons>
-    <ion-title>Make</ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only color="royal">
+		</ion-buttons>
+
+		<ion-segment [(ngModel)]="whereFilter">
+			<ion-segment-button color="primary" value="nearby">
+				Make
+			</ion-segment-button>
+			<ion-segment-button value="mylounges">
+				Take
+			</ion-segment-button>
+
+		</ion-segment>
+		<ion-buttons end>
+			<button ion-button icon-only color="royal">
         <ion-icon name="person-add"></ion-icon>
       </button>
-    </ion-buttons>
-  </ion-toolbar>
+		</ion-buttons>
+	</ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  
+	<ion-item>
+		<ion-label color="primary" floating>What</ion-label>
+		<ion-input></ion-input>
+	</ion-item>
+	<ion-item>
+		<ion-label color="primary" floating>Where</ion-label>
+		<ion-input (focus)='presentWhenModal()'></ion-input>
+	</ion-item>
+
+	<ion-item>
+
+
+	</ion-item>
+	<ion-segment color="danger">
+		<ion-label color="primary">When</ion-label>
+		<ion-segment-button value="standard">
+			Today
+		</ion-segment-button>
+		<ion-segment-button value="hybrid">
+			Tomorrow
+		</ion-segment-button>
+		<ion-segment-button value="sat">
+			day after
+		</ion-segment-button>
+	</ion-segment>
+<ion-label>Portions</ion-label>
+	<ion-item>
+		
+		<ion-range min="1" max="4" step="1" snaps="true" color="secondary" [(ngModel)]="portions">
+
+			<ion-label range-left>1</ion-label>
+			<ion-label range-right>4</ion-label>
+		</ion-range>
+	</ion-item>
+
+	<ion-item>
+		<ion-label left>Thank</ion-label>
+
+	</ion-item>
+
+	<ion-segment color="danger">
+
+	
+		<ion-segment-button value="hybrid">
+			Cash
+		</ion-segment-button>
+		<ion-segment-button value="sat">
+			Owe one
+		</ion-segment-button>
+	</ion-segment>
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar>
-    <p>Ash, Misty, Brock</p>
-    <ion-buttons end>
-      <button ion-button icon-right color="royal">
-        Send
+	<ion-toolbar>
+		<p>Ash, Misty, Brock</p>
+		<ion-buttons end>
+			<button ion-button icon-right color="royal">
+        Post
         <ion-icon name="send"></ion-icon>
       </button>
-    </ion-buttons>
-  </ion-toolbar>
+		</ion-buttons>
+	</ion-toolbar>
 </ion-footer>
