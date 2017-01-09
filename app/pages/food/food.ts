@@ -66,20 +66,20 @@ export class FoodPage implements OnInit {
     // return this.http.get("http://jsonplaceholder.typicode.com/users")
     //                 .map(this.extractData)
     //                 .catch(this.handleError);
-    let vm =this;
+    let vm = this;
     let findLocProm = this.geoLoc.getCurrentPosition();
 
-  let res= Observable.fromPromise(findLocProm).flatMap(
-function (pos) {
-          return vm.http.get("https://localhost:44351/api/foods/nearme/today?distance=1000&lat=" + pos.coords.latitude + "&localUTCTime=2017-01-07T10:32:26.907Z&lon=" + pos.coords.longitude + "&page=0&pageSize=20'")
-            .map(vm.extractData)
-            .catch(vm.handleError);
+    let res = Observable.fromPromise(findLocProm).flatMap(
+      function (pos) {
+        return vm.http.get("https://localhost:44351/api/foods/nearme/today?distance=1000&lat=" + pos.coords.latitude + "&localUTCTime=2017-01-07T10:32:26.907Z&lon=" + pos.coords.longitude + "&page=0&pageSize=20'")
+          .map(vm.extractData)
+          .catch(vm.handleError);
 
-        }
+      }
 
-   );
+    );
 
-   return res;
+    return res;
 
   }
 

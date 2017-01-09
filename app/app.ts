@@ -6,10 +6,15 @@ import  {MenuPage} from './pages/menu/menu'
 import {DataService} from './providers/data-service/data-service';
 import {PouchdbService}  from './providers/pouchdb-service/pouchdb-service';
 import { GeoLocation } from './providers/geo-location/geo-location';
+import { APP_CONFIG_TOKEN, APP_CONFIG, IApplicationConfig } from './providers/config-service/config-service';
+import {LbcSettings} from './providers/lbc-settings/lbc-settings'
 
 @Component({
   template: '<ion-nav [root]="rootPage"></ion-nav>',
-  providers:[DataService,PouchdbService,GeoLocation]
+  providers:[DataService,PouchdbService,GeoLocation
+  ,{ provide: APP_CONFIG_TOKEN, useValue: APP_CONFIG }
+  ,LbcSettings
+  ]
 })
 export class MyApp {
 
