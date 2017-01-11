@@ -7,6 +7,7 @@
 <ion-header>
 
 	<ion-navbar>
+		{{food.Name}}
 		<!--<ion-title>{{hero.name}</ion-title>-->
 	</ion-navbar>
 
@@ -15,14 +16,14 @@
 	<!--<img src="build/images/food.png" />-->
 
 	<h1 >{{food.Name}}</h1>
-	<h3  text-right>by {{food.ClubberID}}</h3>
-	<ion-row padding>
-		<ion-col>
+	<h3 >by {{food.ClubberID}}</h3>
+	<ion-row>
+		<!--<ion-col>
 			<button clear small danger>
           <ion-icon name='star'></ion-icon>
           Request this
         </button>
-		</ion-col>
+		</ion-col>-->
 		<ion-col>
 			<button clear small danger>
           <ion-icon name='star'></ion-icon>
@@ -53,7 +54,7 @@
 			<p>Spicy vegetable</p>
 			<ion-list>
 				<ion-list-header>
-					Best available @
+				<h6>	Best available @</h6>
 				</ion-list-header>
 				<ion-item *ngFor="let ingr of food.Ingredients">
 					<ion-avatar item-left>
