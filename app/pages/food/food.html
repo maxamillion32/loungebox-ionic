@@ -33,7 +33,7 @@
 
 
 <ion-content class="card-background-page">
-	<ion-card *ngFor="let food of foods" (click)="showDetail(food)">
+	<ion-card *ngFor="let food of foods | async" (click)="navigateToDetailPage(food)">
 		<ion-card>
 
 			<ion-slides>

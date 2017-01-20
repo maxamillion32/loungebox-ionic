@@ -30,7 +30,7 @@ export class FoodDb {
         return this.db.remove(food);
     }
 
-    getAll() : Observable<any> {
+    getAll() : Observable<Food[]> {
         return Observable.fromPromise(
             this.initDB()
                 .then(() => {

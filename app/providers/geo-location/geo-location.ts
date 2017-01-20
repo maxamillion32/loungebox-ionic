@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable, Observable,OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Geolocation } from 'ionic-native';
@@ -21,8 +21,8 @@ export class GeoLocation implements OnInit {
 
   }
 
-  public getCurrentPosition() {
-    return Geolocation.getCurrentPosition();
+  public getCurrentPosition():Observable<any> {
+    return Observable.fromPromise(Geolocation.getCurrentPosition());
     //  then((resp) => {
     //     // resp.coords.latitude
     //     // resp.coords.longitude

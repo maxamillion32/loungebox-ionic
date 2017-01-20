@@ -12,8 +12,10 @@ import 'rxjs/add/operator/toPromise';
 
 import { DataService } from '../../providers/data-service/data-service';
 import { PouchdbService } from '../../providers/pouchdb-service/pouchdb-service';
+import { Utils } from '../../providers/pouchdb-service/utils';
+import { Logger } from '../../providers/pouchdb-service/logger';
 import { FoodDetailPage } from '../food-detail/food-detail';
-import { GeoLocation } from '../../providers/geo-location/geo-location';
+import { FoodWeb } from '../../providers/pouchdb-service/food-web';
 
 @Component({
   templateUrl: 'build/pages/food/food.html'
@@ -26,7 +28,10 @@ export class FoodPage implements OnInit {
     private http: Http,
     private ds: DataService,
     private pouch: PouchdbService,
-    private geoLoc: GeoLocation) {
+    private utils: Utils,
+    private log: Logger,
+    private web_server: FoodWeb
+  ) {
     console.log(ds);
     //ds.createData();
     this.nav = navCtrl;
@@ -37,53 +42,47 @@ export class FoodPage implements OnInit {
   }
   ngOnInit() {
     console.log("inside on init");
-    this.getFoods().subscribe(x => this.foods = x);;
+    //this.getFoods().subscribe(x => this.foods = x);;
+    //this.getFoods().subscribe(x => this.foods = x);;
+    this.foods = this.web_server.getFoodsNearByToday();
 
-    this.pouch.createTodo({ name: 'hello there' });
+    //this.pouch.createTodo({ name: 'hello there' });
 
     this.whereFilter = "nearby";
 
   }
 
-  getFoods(): Observable<String[]> {
-    console.log("inside get heroes");
-    //return null;
-    //  let foods = this.http.get('https://localhost:44351/api/foods/nearme/today?distance=1000&lat=51.295541899999996&localUTCTime=2017-01-07T10:32:26.907Z&lon=-0.7524763999999999&page=0&pageSize=20').map(
+  // getFoods(): Observable<String[]> {
+  //   console.log("inside get heroes");
+  //   //return null;
+  //   //  let foods = this.http.get('https://localhost:44351/api/foods/nearme/today?distance=1000&lat=51.295541899999996&localUTCTime=2017-01-07T10:32:26.907Z&lon=-0.7524763999999999&page=0&pageSize=20').map(
 
-    //     function(r){
-    //       console.log('Inside food call ' + JSON.stringify(r));
+  //   //     function(r){
+  //   //       console.log('Inside food call ' + JSON.stringify(r));
 
-    //     }
-    //   ).catch(function(err){console.log("Inside food erro" + err);
-    //     return Observable.throw(err);
-    //   });
+  //   //     }
+  //   //   ).catch(function(err){console.log("Inside food erro" + err);
+  //   //     return Observable.throw(err);
+  //   //   });
 
-    //   foods.subscribe(function(foods){
+  //   //   foods.subscribe(function(foods){
 
 
 
-    //   });
-    // return this.http.get("http://jsonplaceholder.typicode.com/users")
-    //                 .map(this.extractData)
-    //                 .catch(this.handleError);
-    let vm = this;
-    let findLocProm = this.geoLoc.getCurrentPosition();
+  //   //   });
+  //   // return this.http.get("http://jsonplaceholder.typicode.com/users")
+  //   //                 .map(this.extractData)
+  //   //                 .catch(this.handleError);
+  //   // // let vm = this;
+  //   // // let findLocProm = this.geoLoc.getCurrentPosition();
 
-    let res = Observable.fromPromise(findLocProm).flatMap(
-      function (pos) {
-        return vm.http.get("https://localhost:44351/api/foods/nearme/today?distance=1000&lat=" + pos.coords.latitude + "&localUTCTime=2017-01-07T10:32:26.907Z&lon=" + pos.coords.longitude + "&page=0&pageSize=20'")
-          .map(vm.extractData)
-          .catch(vm.handleError);
+  //   // // let res = Observable.fromPromise(findLocProm).map(this.getFoodsFromServer);
 
-      }
+  //   // // return res;
 
-    );
+  // }
 
-    return res;
-
-  }
-
-  showDetail(item) {
+  navigateToDetailPage(item) {
 
     console.log('inside button');
     this.nav.push(FoodDetailPage, {
@@ -91,20 +90,4 @@ export class FoodPage implements OnInit {
     });
   }
 
-  private extractData(res: Response) {
-    console.log("inside extract");
-
-    let body = res.json();
-    console.log(body);
-    return body;
-    //this.heroes = body;
-  }
-  private handleError(error: any) {
-    // In a real world app, we might use a remote logging infrastructure
-    // We'd also dig deeper into the error to get a better message
-    let errMsg = (error.message) ? error.message :
-      error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-    console.error(errMsg); // log to console instead
-    return Observable.throw(errMsg);
-  }
 }
