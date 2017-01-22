@@ -1,7 +1,8 @@
-import { Injectable, Observable,OnInit } from '@angular/core';
+import { Injectable,OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Geolocation } from 'ionic-native';
+import { Observable } from 'rxjs/Observable';
 
 /*
   Generated class for the GeoLocation provider.

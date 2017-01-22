@@ -7,13 +7,20 @@ import {DataService} from './providers/data-service/data-service';
 import {PouchdbService}  from './providers/pouchdb-service/pouchdb-service';
 import { GeoLocation } from './providers/geo-location/geo-location';
 import { APP_CONFIG_TOKEN, APP_CONFIG, IApplicationConfig } from './providers/config-service/config-service';
-import {LbcSettings} from './providers/lbc-settings/lbc-settings'
-
+import {LbcSettings} from './providers/lbc-settings/lbc-settings';
+import {Utils} from './providers/pouchdb-service/utils';
+import {Logger1} from './providers/pouchdb-service/logger';
+import {FoodWeb} from './providers/pouchdb-service/food-web';
+//"C:\Program Files\IIS Express\iisexpress.exe" /site:tinypots /config:"C:\Users\Anwar\Documents\Visual Studio 2015\Projects\loungebox\loungebox\.vs\config\applicationhost.config"
 @Component({
   template: '<ion-nav [root]="rootPage"></ion-nav>',
   providers:[DataService,PouchdbService,GeoLocation
   ,{ provide: APP_CONFIG_TOKEN, useValue: APP_CONFIG }
-  ,LbcSettings
+  ,LbcSettings,
+  Logger1,
+  Utils,
+  
+  FoodWeb
   ]
 })
 export class MyApp {

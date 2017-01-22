@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 
 @Injectable()
-export class Logger {
+export class Logger1{
 
 
     constructor() { }

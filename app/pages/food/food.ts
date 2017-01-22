@@ -13,7 +13,7 @@ import 'rxjs/add/operator/toPromise';
 import { DataService } from '../../providers/data-service/data-service';
 import { PouchdbService } from '../../providers/pouchdb-service/pouchdb-service';
 import { Utils } from '../../providers/pouchdb-service/utils';
-import { Logger } from '../../providers/pouchdb-service/logger';
+import { Logger1 } from '../../providers/pouchdb-service/logger';
 import { FoodDetailPage } from '../food-detail/food-detail';
 import { FoodWeb } from '../../providers/pouchdb-service/food-web';
 
@@ -21,7 +21,7 @@ import { FoodWeb } from '../../providers/pouchdb-service/food-web';
   templateUrl: 'build/pages/food/food.html'
 })
 export class FoodPage implements OnInit {
-  public foods: String[];
+  public foods:Observable<any>;
   nav: NavController;
   whereFilter: string;
   constructor(public navCtrl: NavController,
@@ -29,7 +29,7 @@ export class FoodPage implements OnInit {
     private ds: DataService,
     private pouch: PouchdbService,
     private utils: Utils,
-    private log: Logger,
+    private log: Logger1,
     private web_server: FoodWeb
   ) {
     console.log(ds);
@@ -45,7 +45,7 @@ export class FoodPage implements OnInit {
     //this.getFoods().subscribe(x => this.foods = x);;
     //this.getFoods().subscribe(x => this.foods = x);;
     this.foods = this.web_server.getFoodsNearByToday();
-
+console.warn(JSON.stringify(this.foods));
     //this.pouch.createTodo({ name: 'hello there' });
 
     this.whereFilter = "nearby";
