@@ -5,13 +5,18 @@ export interface IApplicationConfig {
   appName: string;
   apiEndpoint: string;
   PouchDBSyncUrl:string  ;
+
+//Security
+  oauthTokenEndpoint:string;
 }
 
 // Configuration values for our app
 export const APP_CONFIG: IApplicationConfig = {
   appName: 'Loungebox.CLUB',
-  apiEndpoint: 'http://www...',
-  PouchDBSyncUrl:'http://anwar:anwar@192.168.0.21:5984/loungebox'
+  apiEndpoint: 'https://localhost:44351',
+  PouchDBSyncUrl:'http://anwar:anwar@192.168.0.21:5984/loungebox',
+  oauthTokenEndpoint :'/token'
+
 };
 
 // Create a config token to avoid naming conflicts
