@@ -11,12 +11,14 @@ import {LbcSettings} from './providers/lbc-settings/lbc-settings';
 import {Utils} from './providers/pouchdb-service/utils';
 import {Logger1} from './providers/pouchdb-service/logger';
 import {FoodWeb} from './providers/pouchdb-service/food-web';
+import {LbcDevice} from './providers/device/device';
 //"C:\Program Files\IIS Express\iisexpress.exe" /site:tinypots /config:"C:\Users\Anwar\Documents\Visual Studio 2015\Projects\loungebox\loungebox\.vs\config\applicationhost.config"
 @Component({
   template: '<ion-nav [root]="rootPage"></ion-nav>',
   providers:[DataService,PouchdbService,GeoLocation
   ,{ provide: APP_CONFIG_TOKEN, useValue: APP_CONFIG }
   ,LbcSettings,
+  LbcDevice,
   Logger1,
   Utils,
   

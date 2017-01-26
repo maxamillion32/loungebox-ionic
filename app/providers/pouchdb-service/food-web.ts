@@ -25,7 +25,11 @@ export class FoodWeb {
        }
 
     getFoodsNearByToday(): Observable<Food[]> {
-        return this.geoLoc.getCurrentPosition().flatMap(pos => this.getFoodsNearByTodayFromServer(pos));
+        return this.geoLoc
+            .getCurrentPosition()
+            .flatMap(pos => 
+                this.getFoodsNearByTodayFromServer(pos)
+        );
     }
 
     private getFoodsNearByTodayFromServer(pos): Observable<Food[]> {

@@ -1,38 +1,42 @@
-import { Injectable,Http } from '@angular/core';
+import { Injectable, Http } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { Observable } from 'rxjs/rx';
 import { Food } from '../models/food';
 import {Utils} from './utils';
+import {Logger1} from '../pouchdb-service/logger';
 import {GeoLocation} from '../geo-location/geo-location';
 import {OAuth} from './OAuth';
 import * as PouchDB from 'pouchdb';
+import { AuthDb } from './auth-db';
 
 @Injectable()
 export class Authentication {
     private db;
 
     constructor(private platform: Platform,
-    private OAuth:OAuth,
-    private http:Http,
-    private utils:Utils,
-    private geoLoc: GeoLocation
+        private OAuth: OAuth,
+        private http: Http,
+        private utils: Utils,
+        private geoLoc: GeoLocation,
+        private authDB: AuthDb,
+        private log: Logger1
     ) { }
 
-    login(user:string, password:string):Observable<any>{
-        return this.OAuth.getAccessToken(user,password).map(
-            (access_token) => {
-                
-            } 
+    login(user: string, password: string): Observable<any> {
+        return this.OAuth.getAccessToken(user, password).map(
+            (auth) => {
+                this.log.log('Loggged in success:' + JSON.stringify(auth) );
+            }
 
-        );
-            
+        )
+        .catch(err => this.utils.handleError(err));
+
     }
 
     logout(): Observable<any> {
-        
-        return this.http.get("https://localhost:44351/api/foods/nearme/today?distance=1000&lat=" + pos.coords.latitude + "&localUTCTime=2017-01-07T10:32:26.907Z&lon=" + pos.coords.longitude + "&page=0&pageSize=20'")
-            .map(this.utils.extractAsJson)
-            .catch(this.utils.handleError);
+        return Observable.fromPromise(
+            this.authDB.removeTokens())
+        .catch(err => this.utils.handleError(err));
     }
-   
+
 }
