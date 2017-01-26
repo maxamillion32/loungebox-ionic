@@ -22,6 +22,18 @@ export class Authentication {
         private log: Logger1
     ) { }
 
+    getUserName(){
+        return Observable.fromPromise(
+            
+         this.authDB.getTokens().then(
+            (auth) => {
+                return auth.user;
+            }
+
+        ))
+        .catch(err => this.utils.handleError(err));
+    }
+
     login(user: string, password: string): Observable<any> {
         return this.OAuth.getAccessToken(user, password).map(
             (auth) => {

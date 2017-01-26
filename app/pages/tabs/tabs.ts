@@ -4,23 +4,36 @@ import { AboutPage } from '../about/about';
 import { ContactPage } from '../contact/contact';
 import { FoodPage } from '../food/food';
 import {FoodPostPage} from '../food-post/food-post';
+import {Authentication} from '../../providers/security/authentication';
 
 @Component({
   templateUrl: 'build/pages/tabs/tabs.html'
 })
 export class TabsPage {
 
-  public tab1Root: any;
-  public tab2Root: any;
-  public tab3Root: any;
-  public tab4Root: any;
+  public tabFoodRoot: any;
+  public tabLoungesRoot: any;
+  public tabClubberRoot: any;
+  public tabShareRoot: any;
 
-  constructor() {
+  constructor(private auth: Authentication) {
     // this tells the tabs component which Pages
     // should be each tab's root Page
-    this.tab1Root = FoodPage;
-    this.tab2Root = HomePage;
-    this.tab3Root = AboutPage;
-    this.tab4Root = FoodPostPage;
+    this.tabFoodRoot = FoodPage;
+    this.tabLoungesRoot = HomePage;
+    this.tabClubberRoot = AboutPage;
+    this.tabShareRoot = FoodPostPage;
+  }
+
+  setClubberPage(){
+
+      this.auth.getUserName()
+      
+      .map(user =>{
+          
+      });
+
+      
+
   }
 }

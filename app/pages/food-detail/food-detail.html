@@ -15,8 +15,8 @@
 <ion-content>
 	<!--<img src="build/images/food.png" />-->
 
-	<h1 >{{food.Name}}</h1>
-	<h3 >by {{food.ClubberID}}</h3>
+	<h1>{{food.Name}}</h1>
+	<h3>by {{food.ClubberID}}</h3>
 	<ion-row>
 		<!--<ion-col>
 			<button clear small danger>
@@ -54,17 +54,19 @@
 			<p>Spicy vegetable</p>
 			<ion-list>
 				<ion-list-header>
-				<h6>	Best available @</h6>
+					<h6> Best available @</h6>
 				</ion-list-header>
 				<ion-item *ngFor="let ingr of food.Ingredients">
 					<ion-avatar item-left>
 						<img src="build/images/food.png">
 					</ion-avatar>
-					<h2><AO class="com"></AO></h2>
+					<h2>
+						<AO class="com"></AO>
+					</h2>
 					<!--<p>Spicy vegetable</p>-->
 
 				</ion-item>
-        <ion-item *ngFor="let ingr of food.Ingredients">
+				<ion-item *ngFor="let ingr of food.Ingredients">
 					<ion-avatar item-left>
 						<img src="build/images/food.png">
 					</ion-avatar>
@@ -72,7 +74,7 @@
 					<!--<p>Spicy vegetable</p>-->
 
 				</ion-item>
-        <ion-item *ngFor="let ingr of food.Ingredients">
+				<ion-item *ngFor="let ingr of food.Ingredients">
 					<ion-avatar item-left>
 						<img src="build/images/food.png">
 					</ion-avatar>
