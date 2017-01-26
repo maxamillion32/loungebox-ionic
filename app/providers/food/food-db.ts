@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';  
 import { Platform } from 'ionic-angular';  
 import { Observable } from 'rxjs/rx';  
-import { Food } from '../models/food';
+import { Food } from '../../models/food';
 
 import * as PouchDB from 'pouchdb';
 

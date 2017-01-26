@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { Observable } from 'rxjs/rx';
 import { Http, Response } from '@angular/http';
-import {Logger1} from './logger.ts';
+import {Logger1} from '../utils/logger';
 import * as PouchDB from 'pouchdb';
 import { Device } from 'ionic-native';
 @Injectable()
@@ -12,7 +12,7 @@ export class LbcDevice {
 
     getDeviceID() :string {
 
-        return Device.uuid;
+        return Device.device.uuid;
     }
 
 }

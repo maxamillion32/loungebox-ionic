@@ -5,9 +5,9 @@ import { Http, Response } from '@angular/http';
 import { Platform } from 'ionic-angular';
 import { Observable } from 'rxjs/rx';
 import { Food } from '../../models/food';
-import { Utils } from './utils';
+import { Utils } from '../utils/utils';
 import { GeoLocation } from '../geo-location/geo-location';
-import { Logger1 } from './logger';
+import { Logger1 } from '../utils/logger';
 
 import * as PouchDB from 'pouchdb';
 

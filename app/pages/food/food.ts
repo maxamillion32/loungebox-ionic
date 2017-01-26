@@ -12,10 +12,10 @@ import 'rxjs/add/operator/toPromise';
 
 import { DataService } from '../../providers/data-service/data-service';
 import { PouchdbService } from '../../providers/pouchdb-service/pouchdb-service';
-import { Utils } from '../../providers/pouchdb-service/utils';
-import { Logger1 } from '../../providers/pouchdb-service/logger';
+import { Utils } from '../../providers/utils/utils';
+import { Logger1 } from '../../providers/utils/logger';
 import { FoodDetailPage } from '../food-detail/food-detail';
-import { FoodWeb } from '../../providers/pouchdb-service/food-web';
+import { FoodWeb } from '../../providers/food/food-web';
 
 @Component({
   templateUrl: 'build/pages/food/food.html'
