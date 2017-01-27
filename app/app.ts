@@ -5,6 +5,7 @@ import { TabsPage } from './pages/tabs/tabs';
 import  {MenuPage} from './pages/menu/menu'
 import {DataService} from './providers/data-service/data-service';
 import {PouchdbService}  from './providers/pouchdb-service/pouchdb-service';
+import {PouchdbInstance}  from './providers/pouchdb-service/pouchdb-instance';
 import { GeoLocation } from './providers/geo-location/geo-location';
 import { APP_CONFIG_TOKEN, APP_CONFIG, IApplicationConfig } from './providers/config-service/config-service';
 import {LbcSettings} from './providers/lbc-settings/lbc-settings';
@@ -24,6 +25,7 @@ import {AuthDb} from './providers/security/auth-db';
   LbcDevice,
   Logger1,
   Utils,
+  PouchdbInstance,
   OAuth1,
   Authentication,
   AuthDb,

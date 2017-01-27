@@ -6,7 +6,6 @@ import { Utils } from '../utils/utils';
 import { GeoLocation } from '../geo-location/geo-location';
 import { LbcSettings } from '../lbc-settings/lbc-settings';
 import { AuthDb } from './auth-db';
-//import * as PouchDB from 'pouchdb';
 import { LbcDevice } from '../device/device';
 
 @Injectable()
@@ -48,6 +47,11 @@ export class OAuth1 {
     retriveToken() {
         return this.authDB.getTokens();
     }
+
+    removeToken() {
+        return this.authDB.removeTokens();
+    }
+
     getRefreshToken(): Observable<any> {
         let token_url = this.settings.configService.apiEndpoint + this.settings.configService.oauthTokenEndpoint;
 
@@ -60,19 +64,11 @@ export class OAuth1 {
             .catch((err) => this.utils.handleError(err));
 
     }
-
-
-
     private getGrantTypeForRefreshToken(): string {
-
         let refreshToken = '';
-
-        let data = '';
-
-        // let data = `grant_type=refresh_token
-        //             &refresh_token="+ ${refreshToken}
-        //             + "&client_id=${this.device.getDeviceID()}`;
-
+        let data = `grant_type=refresh_token
+                    &refresh_token="+ ${refreshToken}
+                    + "&client_id=${this.device.getDeviceID()}`;
         return data;
     }
 

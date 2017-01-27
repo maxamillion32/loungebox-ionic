@@ -3,27 +3,18 @@ import { Platform } from 'ionic-angular';
 import { Observable } from 'rxjs/rx';
 import { LbcDevice } from '../device/device';
 import { Logger1 } from '../utils/logger';
+import { PouchdbInstance } from '../pouchdb-service/pouchdb-instance';
 import * as PouchDB from 'pouchdb';
 
 @Injectable()
 export class AuthDb {
-    private db;
+
 
     constructor(private platform: Platform,
         private device: LbcDevice,
-        private log: Logger1
+        private log: Logger1,
+        private db: PouchdbInstance
     ) { }
-
-    initDB(): Promise<any> {
-        this.log.log('creating.. db');
-        return this.platform.ready()
-            .then(() => {
-                if(this.db==null){
-                this.db = new PouchDB('auth', { adapter: 'websql' });
-                this.log.log('created db');
-                }
-            });
-    }
 
     addTokens(user: string, access_token: string, refresh_token: string): Promise<any> {
         let obj = {
@@ -34,13 +25,13 @@ export class AuthDb {
 
         };
         this.log.log('addig token...');
-        return this.initDB().then(() => {
-           return this.db.put(obj).then(
-                ()=>{
+        return this.db.DB().then((db) => {
+            return db.put(obj).then(
+                () => {
                     this.log.log('token added.');
                 }
 
-           );
+            );
         }
         );
 
@@ -48,12 +39,11 @@ export class AuthDb {
 
     getTokens(): Promise<any> {
 
-        return this.initDB()
-            .then(() => {
-                return this.db.get(this.getAuthKey())
-                    .catch(err =>{
-
-                        if(err.name ==='not_found') return {};
+        return this.db.DB()
+            .then((db) => {
+                return db.get(this.getAuthKey())
+                    .catch(err => {
+                        if (err.name === 'not_found') return {};
                         else throw err;
                     });
             });
@@ -64,12 +54,12 @@ export class AuthDb {
     }
 
     removeTokens(): Promise<any> {
-        return this.db.get(this.getAuthKey()).then(function (doc) {
-            return this.db.remove(doc);
+        return this.db.DB().then((db) => {
+            db.get(this.getAuthKey()).then(function (doc) {
+                return this.db.remove(doc);
+            });
         });
     }
-
-
 
     // getRefreshToken(): Observable<any> {
     //     return Observable.fromPromise(
