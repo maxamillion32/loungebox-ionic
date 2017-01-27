@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { Observable } from 'rxjs/rx';
 import { LbcDevice } from '../device/device';
-
+import { Logger1 } from '../utils/logger';
 import * as PouchDB from 'pouchdb';
 
 @Injectable()
@@ -10,13 +10,18 @@ export class AuthDb {
     private db;
 
     constructor(private platform: Platform,
-        private device: LbcDevice
+        private device: LbcDevice,
+        private log: Logger1
     ) { }
 
     initDB(): Promise<any> {
+        this.log.log('creating.. db');
         return this.platform.ready()
             .then(() => {
+                if(this.db==null){
                 this.db = new PouchDB('auth', { adapter: 'websql' });
+                this.log.log('created db');
+                }
             });
     }
 
@@ -28,14 +33,29 @@ export class AuthDb {
             refresh_token: refresh_token
 
         };
-        return this.db.put(obj);
+        this.log.log('addig token...');
+        return this.initDB().then(() => {
+           return this.db.put(obj).then(
+                ()=>{
+                    this.log.log('token added.');
+                }
+
+           );
+        }
+        );
+
     }
 
     getTokens(): Promise<any> {
 
         return this.initDB()
             .then(() => {
-                return this.db.get(this.getAuthKey());
+                return this.db.get(this.getAuthKey())
+                    .catch(err =>{
+
+                        if(err.name ==='not_found') return {};
+                        else throw err;
+                    });
             });
     }
 

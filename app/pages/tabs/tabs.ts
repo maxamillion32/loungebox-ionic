@@ -18,31 +18,31 @@ export class TabsPage {
   public tabShareRoot: any;
 
   constructor(
-    //private auth: Authentication
+    private auth: Authentication
     ) {
     // this tells the tabs component which Pages
     // should be each tab's root Page
     this.tabFoodRoot = FoodPage;
     this.tabLoungesRoot = HomePage;
-    this.tabClubberRoot = AboutPage;
+    //this.tabClubberRoot = AboutPage;
     this.tabShareRoot = FoodPostPage;
-    //this.setClubberPage();  
+    this.setClubberPage();  
 }
 
 
-  // setClubberPage() {
+  setClubberPage() {
 
-  //   this.auth.getUserName()
+    this.auth.getUserName()
 
-  //     .map(user => {
-  //       if (user) {
-  //         this.tabClubberRoot = AboutPage;
-  //       } else {
-  //         this.tabClubberRoot = LoginPage;
-  //       }
-  //     });
+      .map(user => {
+        if (user) {
+          this.tabClubberRoot = AboutPage;
+        } else {
+          this.tabClubberRoot = LoginPage;
+        }
+      });
 
 
 
-  // }
+  }
 }
