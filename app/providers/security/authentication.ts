@@ -21,7 +21,7 @@ export class Authentication {
         private log: Logger1
     ) { }
 
-    getUserName(){
+    getUserName() : Observable<string>{
         return Observable.fromPromise(
          this.oAuth.retriveToken()
          .then(auth => {

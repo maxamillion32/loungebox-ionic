@@ -34,7 +34,7 @@ export class TabsPage {
 
     this.auth.getUserName()
 
-      .map(user => {
+      .then(user => {
         if (user) {
           this.tabClubberRoot = AboutPage;
         } else {
