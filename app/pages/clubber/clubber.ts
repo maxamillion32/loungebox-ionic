@@ -1,13 +1,24 @@
 import { Component } from '@angular/core';
 import { NavController,NavParams } from 'ionic-angular';
-
+import {Authentication} from '../../providers/security/authentication';
+import {LoginPage} from '../login/login';
 @Component({
   templateUrl: 'build/pages/clubber/clubber.html'
 })
 export class ClubberPage {
   clubber:any;
-  constructor(public navCtrl: NavController,params :NavParams) {
+  constructor(public nav: NavController,params :NavParams
+  ,private auth:Authentication
+  ) {
     this.clubber =params.data;
     
+  }
+
+  logOut(){
+
+    this.auth.logout()
+    .subscribe(()=>{
+        this.nav.setRoot(LoginPage);
+    });
   }
 }

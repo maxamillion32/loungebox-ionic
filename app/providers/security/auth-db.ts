@@ -60,9 +60,10 @@ export class AuthDb {
     }
 
     removeTokens(): Promise<any> {
+           this.log.log('removing token...');
         return this.db.DB().then((db) => {
-            db.get(this.getAuthKey()).then(function (doc) {
-                return this.db.remove(doc);
+            db.get(this.getAuthKey()).then(doc => {
+                return this.db.DB().then(db=>db.remove(doc));
             });
         });
     }

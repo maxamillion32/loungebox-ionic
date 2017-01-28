@@ -53,8 +53,10 @@ export class LoginPage {
     let alert = this.alertCtrl.create({
       title: 'Fail',
       subTitle: text,
-      buttons: ['OK']
+      buttons: [{text:'Dismiss'
+      ,handler: data=> {alert.dismiss();return false;}
+      }]
     });
-    alert.present(prompt);
+    alert.present();
   }
 }
