@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,NavParams } from 'ionic-angular';
 
 @Component({
-  templateUrl: 'build/pages/contact/contact.html'
+  templateUrl: 'build/pages/clubber/clubber.html'
 })
 export class ClubberPage {
-  constructor(public navCtrl: NavController) {
+  clubber:any;
+  constructor(public navCtrl: NavController,params :NavParams) {
+    this.clubber =params.data;
+    
   }
 }

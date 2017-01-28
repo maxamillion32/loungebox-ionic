@@ -43,14 +43,20 @@ export class AuthDb {
             .then((db) => {
                 return db.get(this.getAuthKey())
                     .catch(err => {
-                        if (err.name === 'not_found') return {};
+                        if (err.name === 'not_found') 
+                        {
+                            this.log.warn('No auth keys found');
+                            return {};
+                        }
                         else throw err;
                     });
             });
     }
 
     private getAuthKey(): string {
-        return 'auth_' + this.device.getDeviceID();
+        let id = 'auth_' + this.device.getDeviceID();
+        this.log.log('Auth key:' + id);
+        return id;
     }
 
     removeTokens(): Promise<any> {

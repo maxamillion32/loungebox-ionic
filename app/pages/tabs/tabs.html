@@ -9,6 +9,6 @@
 <ion-tabs>
     <ion-tab [root]="tabFoodRoot" tabTitle="Foods" tabIcon="restaurant" tabsHideOnSubPages="true"></ion-tab>
   <ion-tab [root]="tabLoungesRoot" tabTitle="Lounges" tabIcon="home"></ion-tab>
-  <ion-tab [root]="tabClubberRoot" tabTitle="Clubber" tabIcon="ribbon"></ion-tab>
+  <ion-tab [root]="tabClubberRoot" [rootParams]="clubberParams" (ionSelect)="setClubberPage()"  tabTitle="Clubber" tabIcon="ribbon"></ion-tab>
   <ion-tab [root]="tabShareRoot" tabTitle="Share" tabIcon="share"></ion-tab>
 </ion-tabs>

@@ -12,30 +12,30 @@ export class PouchdbService {
   remote: any;
 
   constructor(private http: Http, settings: LbcSettings) {
-    //PouchDB.debug.enable('*');
+    // //PouchDB.debug.enable('*');
 
-    this.db = new PouchDB('loungebox');
-    //this.db.info().then(console.log.bind(console));  
+    // this.db = new PouchDB('loungebox');
+    // //this.db.info().then(console.log.bind(console));  
 
-    this.remote = new PouchDB(settings.configService.PouchDBSyncUrl);
+    // this.remote = new PouchDB(settings.configService.PouchDBSyncUrl);
 
-    let options = {
-      live: true
-      //,
-      //retry: true,
-      //continuous: true
+    // let options = {
+    //   live: true
+    //   //,
+    //   //retry: true,
+    //   //continuous: true
 
-    };
+    // };
 
-    //PouchDB.replicate('mydb', 'http://localhost:5984/mydb');
-    this.db.sync(this.remote)
+    // //PouchDB.replicate('mydb', 'http://localhost:5984/mydb');
+    // this.db.sync(this.remote)
 
-      .on('error', function (err) {
-        debugger;
-        console.log('erro sync' + JSON.stringify(err));
+    //   .on('error', function (err) {
+    //     debugger;
+    //     console.log('erro sync' + JSON.stringify(err));
 
-        // handle error
-      });
+    //     // handle error
+    //   });
 
   }
 

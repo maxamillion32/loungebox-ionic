@@ -3,6 +3,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Platform } from 'ionic-angular';
 import { Observable } from 'rxjs/rx';
 import { Utils } from '../utils/utils';
+import { Logger1 } from '../utils/logger';
 import { GeoLocation } from '../geo-location/geo-location';
 import { LbcSettings } from '../lbc-settings/lbc-settings';
 import { AuthDb } from './auth-db';
@@ -18,13 +19,14 @@ export class OAuth1 {
         private geoLoc: GeoLocation,
         private authDB: AuthDb,
         private settings: LbcSettings,
-        private device: LbcDevice
+        private device: LbcDevice,
+        private log:Logger1
     ) { }
 
     getAccessToken(user: string, pwd: string, useRefreshTokens): Observable<any> {
 
         let token_url = this.settings.configService.apiEndpoint + this.settings.configService.oauthTokenEndpoint;
-
+        this.log.log('getting access token:' + token_url);
         return this.http
             .post(token_url,
             this.getGrantTypeForAccesToken(user, pwd, useRefreshTokens),
@@ -40,7 +42,7 @@ export class OAuth1 {
         if (useRefreshTokens) {
             data = data + "&client_id=" + this.device.getDeviceID();
         };
-
+this.log.log('Grant type:' + data);
         return data;
     }
 
@@ -69,6 +71,7 @@ export class OAuth1 {
         let data = `grant_type=refresh_token
                     &refresh_token="+ ${refreshToken}
                     + "&client_id=${this.device.getDeviceID()}`;
+                    this.log.log('Grant type:' + data);
         return data;
     }
 

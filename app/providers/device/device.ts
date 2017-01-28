@@ -12,7 +12,8 @@ export class LbcDevice {
 
     getDeviceID() :string {
 
-        return Device.device.uuid;
+        //return Device.device.uuid;
+        return  'ngAuthApp';
     }
 
 }
