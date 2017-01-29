@@ -10,6 +10,7 @@ export class ClubberPage {
   constructor(public nav: NavController,params :NavParams
   ,private auth:Authentication
   ) {
+    console.log('Clubber page params:' + JSON.stringify(params));
     this.clubber =params.data;
     
   }

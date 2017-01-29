@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
-import { NavController, AlertController, LoadingController, Loading } from 'ionic-angular';
+import { Component,ViewChild } from '@angular/core';
+import { NavController, Tabs,ViewController,AlertController, LoadingController, Loading } from 'ionic-angular';
 import { Authentication } from '../../providers/security/authentication';
 // import {   RegisterPage } from '../register/register';
 import { HomePage } from '../home/home';
+import {ClubberPage} from '../clubber/clubber';
  
 @Component({
   selector: 'page-login',
@@ -11,7 +12,7 @@ import { HomePage } from '../home/home';
 export class LoginPage {
   loading: Loading;
   registerCredentials = {email: '', password: ''};
- 
+ //@ViewChild('myTabs') tabRef: Tabs;
   constructor(private nav: NavController, 
   private auth: Authentication, 
   private alertCtrl: AlertController, private loadingCtrl: LoadingController) {}
@@ -23,15 +24,18 @@ export class LoginPage {
   public login() {
     this.showLoading()
     this.auth.login(this.registerCredentials.email,this.registerCredentials.password)
-    .subscribe(allowed => {
-      if (allowed) {
-        setTimeout(() => {
+    .subscribe(user => {
+      console.log('user:'+JSON.stringify(user));
+       setTimeout(() => {
         this.loading.dismiss();
-        this.nav.setRoot(HomePage)
+        //this.nav.setNav(ClubberPage)
+        this.nav.setRoot(ClubberPage,{ClubberID:this.registerCredentials.email});
         });
-      } else {
-        this.showError("Access Denied");
-      }
+      // if (user != null) {
+       
+      // } else {
+      //   this.showError("Access Denied");
+      // }
     },
     error => {
       this.showError(error);
@@ -54,7 +58,13 @@ export class LoginPage {
       title: 'Fail',
       subTitle: text,
       buttons: [{text:'Dismiss'
-      ,handler: data=> {alert.dismiss();return false;}
+      ,
+      handler: () => {
+          alert.dismiss().then(() => {
+            alert.dismiss();
+          });
+          return false;
+        }
       }]
     });
     alert.present();

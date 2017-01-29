@@ -6,6 +6,7 @@ import { Logger1 } from '../utils/logger';
 import { GeoLocation } from '../geo-location/geo-location';
 import { OAuth1 } from './oauth1';
 import * as PouchDB from 'pouchdb';
+import   {ClubberModel} from '../../pages/clubber/clubber.model';
 //import { AuthDb } from './auth-db';
 
 @Injectable()
@@ -26,7 +27,9 @@ export class Authentication {
             this.oAuth.retriveToken()
                 .then(auth => {
                     this.log.log('Auth keys:' + JSON.stringify(auth));
-                    return auth.user;
+                    let user = new ClubberModel();
+                    user.ClubberID = auth.user;
+                    return user;
                 }))
             .catch(err => this.utils.handleError(err));
     }

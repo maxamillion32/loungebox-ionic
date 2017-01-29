@@ -10,6 +10,7 @@ import { LoginPage } from '../login/login';
 import { ClubberPage } from '../clubber/clubber';
 import { Logger1 } from '../../providers/utils/logger';
 import { Utils } from '../../providers/utils/utils';
+import {ClubberModel  } from '../clubber/clubber.model';
 
 @Component({
   templateUrl: 'build/pages/tabs/tabs.html'
@@ -43,14 +44,17 @@ export class TabsPage {
     this.auth.getUserName()
 
       .subscribe(user => {
-        this.log.log('got values back');
+        this.log.log('User name: ' + JSON.stringify(user));
         if (user) {
           this.log.warn('setting clubber page');
           //this.nav.push(ClubberPage);
           this.tabClubberRoot = ClubberPage;
-          this.clubberParams = user;
+          this.clubberParams =user;
+          //this.nav.setRoot(ClubberPage,user);
+          
         } else {
-          this.tabClubberRoot = LoginPage;
+         this.tabClubberRoot = LoginPage;
+          //this.nav.setRoot(LoginPage);
           //this.nav.push(ClubberPage,{clubber:{}});
           this.log.warn('setting Abo page');
         }
