@@ -7,11 +7,12 @@ import {GeoLocation} from '../geo-location/geo-location';
 // import {OAuth1} from './oauth1';
 import * as PouchDB from 'pouchdb';
 import {Authentication}  from '../security/authentication';
+import {IClubberModel} from '../../pages/clubber/Clubber.model';
 //import { AuthDb } from './auth-db';
 
 @Injectable()
 export class Clubber implements OnInit {
-    public ClubberID;
+    public clubber:IClubberModel;
     public IsChecking;
 
     constructor(private platform: Platform,
@@ -24,7 +25,10 @@ export class Clubber implements OnInit {
     ngOnInit() {
         //Get user name
         this.startCheck();
-        this.setup();
+        this.setup()
+            .subscribe(user=>{
+                this.clubber =user;
+            });
 
     }
 
@@ -36,12 +40,9 @@ export class Clubber implements OnInit {
         this.IsChecking = false;
     }
 
-    setup() {
-        this.auth.getUserName()
-            .map(id => {
-                this.ClubberID == id;
-
-            }).finally(_ => {
+    setup() :Observable<IClubberModel> {
+        this.auth.getUser()
+            .finally(_ => {
                 this.finishCheck();
             });
     }

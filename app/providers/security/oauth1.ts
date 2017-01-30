@@ -20,7 +20,7 @@ export class OAuth1 {
         private authDB: AuthDb,
         private settings: LbcSettings,
         private device: LbcDevice,
-        private log:Logger1
+        private log: Logger1
     ) { }
 
     getAccessToken(user: string, pwd: string, useRefreshTokens): Observable<any> {
@@ -42,7 +42,7 @@ export class OAuth1 {
         if (useRefreshTokens) {
             data = data + "&client_id=" + this.device.getDeviceID();
         };
-this.log.log('Grant type:' + data);
+        this.log.log('Grant type:' + data);
         return data;
     }
 
@@ -54,7 +54,7 @@ this.log.log('Grant type:' + data);
         return this.authDB.removeTokens();
     }
 
-    getRefreshToken(): Observable<any> {
+    refreshAccessToken(): Observable<any> {
         let token_url = this.settings.configService.apiEndpoint + this.settings.configService.oauthTokenEndpoint;
 
         return this.http
@@ -71,7 +71,7 @@ this.log.log('Grant type:' + data);
         let data = `grant_type=refresh_token
                     &refresh_token="+ ${refreshToken}
                     + "&client_id=${this.device.getDeviceID()}`;
-                    this.log.log('Grant type:' + data);
+        this.log.log('Grant type:' + data);
         return data;
     }
 

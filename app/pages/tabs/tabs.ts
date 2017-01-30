@@ -40,11 +40,12 @@ export class TabsPage {
 
 
   setClubberPage() {
-    this.log.warn('checkin clubber page...');
-    this.auth.getUserName()
+    this.log.warn('checkin if there is an authenticated user.');
+
+    this.auth.getUser()
 
       .subscribe(user => {
-        this.log.log('User name: ' + JSON.stringify(user));
+        this.log.log('User: ' + JSON.stringify(user));
         if (user) {
           this.log.warn('setting clubber page');
           //this.nav.push(ClubberPage);
@@ -53,10 +54,11 @@ export class TabsPage {
           //this.nav.setRoot(ClubberPage,user);
           
         } else {
+          this.log.warn('Setting Login page as the user is not authenticated');
          this.tabClubberRoot = LoginPage;
           //this.nav.setRoot(LoginPage);
           //this.nav.push(ClubberPage,{clubber:{}});
-          this.log.warn('setting Abo page');
+          
         }
       });
       //.(err => this.utils.handleError(err));

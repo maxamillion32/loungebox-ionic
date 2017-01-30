@@ -6,13 +6,14 @@ import { Logger1 } from '../utils/logger';
 import { GeoLocation } from '../geo-location/geo-location';
 import { OAuth1 } from './oauth1';
 import * as PouchDB from 'pouchdb';
-import   {ClubberModel} from '../../pages/clubber/clubber.model';
+import   {ClubberModel,IClubberModel} from '../../pages/clubber/clubber.model';
 //import { AuthDb } from './auth-db';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class Authentication {
     private db;
-
+ 
     constructor(private platform: Platform,
         private oAuth: OAuth1,
         //private http: Http,
@@ -22,7 +23,7 @@ export class Authentication {
         private log: Logger1
     ) { }
 
-    getUserName(): Observable<string> {
+    getUser(): Observable<IClubberModel> {
         return Observable.fromPromise(
             this.oAuth.retriveToken()
                 .then(auth => {

@@ -16,6 +16,8 @@ import {LbcDevice} from './providers/device/device';
 import {Authentication} from './providers/security/authentication';
 import {OAuth1} from './providers/security/oauth1';
 import {AuthDb} from './providers/security/auth-db';
+import {LbcHttp} from './providers/web/http/lbc-http';
+
 //"C:\Program Files\IIS Express\iisexpress.exe" /site:tinypots /config:"C:\Users\Anwar\Documents\Visual Studio 2015\Projects\loungebox\loungebox\.vs\config\applicationhost.config"
 @Component({
   template: '<ion-nav [root]="rootPage"></ion-nav>',
@@ -29,7 +31,8 @@ import {AuthDb} from './providers/security/auth-db';
   OAuth1,
   Authentication,
   AuthDb,
-  FoodWeb
+  FoodWeb,
+  LbcHttp
   ]
 })
 export class MyApp {
