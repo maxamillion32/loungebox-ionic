@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { ViewController } from 'ionic-angular';
+import {LoungeWeb} from '../../providers/lounge/lounge-web';
 
 /*
   Generated class for the LoungeSelectionPage page.
@@ -10,11 +11,18 @@ import { ViewController } from 'ionic-angular';
 @Component({
   templateUrl: 'build/pages/lounge-selection/lounge-selection.html',
 })
-export class LoungeSelectionPage {
+export class LoungeSelectionPage implements OnInit {
+  lounges:any;
+  constructor(
+    public viewCtrl: ViewController
+    ,private loungeWeb:LoungeWeb
+  ) {}
 
-  constructor(public viewCtrl: ViewController) {
+  ngOnInit(){
+      //this.lounges = this.loungeWeb.getLoungesNearMe();
 
   }
+
   closeModal() {
 
   let data = { 'foo': 'bar' };
