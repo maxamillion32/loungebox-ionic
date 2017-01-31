@@ -13,7 +13,7 @@ export class LbcTime {
         return moment().utc().toISOString();
     }
 
-    utcNow():Date{
+    utcNow():any{
         return moment().utc();
     }
 

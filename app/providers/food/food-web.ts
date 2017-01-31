@@ -17,6 +17,8 @@ import * as PouchDB from 'pouchdb';
 @Injectable()
 export class FoodWeb {
     private db;
+    private api_base:string;
+    private api_nearby:string;
     //log : Logger1;
     constructor(private platform: Platform,
         private http: Http,
@@ -28,11 +30,11 @@ export class FoodWeb {
         private timeSvc: LbcTime
 
     ) {
+ this. api_base   = this.settings.configService.apiEndpoint + '/api/foods';
+    this. api_nearby = this.api_base + '/nearme/today';
 
     }
-    readonly api_base = this.settings.configService.apiEndpoint + 'api/foods';
-    readonly api_nearby = this.api_base + '/nearme/today';
-
+   
     getFoodsNearByToday(): Observable<Food[]> {
         return this.geoLoc
             .getCurrentPosition()
@@ -43,11 +45,7 @@ export class FoodWeb {
 
     private getFoodsNearByTodayFromServer(pos): Observable<Food[]> {
 
-        let query = `?distance=1000
-                &lat=${pos.coords.latitude}
-                &localUTCTime=${this.timeSvc.utcNowToISOString()}
-                &lon=${pos.coords.longitude}
-                &page=0&pageSize=20`;
+        let query = `?distance=1000&lat=${pos.coords.latitude}&localUTCTime=${this.timeSvc.utcNowToISOString()}&lon=${pos.coords.longitude}&page=0&pageSize=20`;
 
         return this.lbcHttp.get(this.api_nearby + query)
             .map(res => this.utils.extractAsJson(res))

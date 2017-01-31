@@ -14,6 +14,7 @@ import { Logger1 } from './providers/utils/logger';
 import { FoodWeb } from './providers/food/food-web';
 import { LoungeWeb } from './providers/lounge/lounge-web';
 import { LbcDevice } from './providers/device/device';
+import {LbcTime} from './providers/time/lbc-time';
 import {DeviceNotification} from './providers/notification/device-notification';
 import { Authentication } from './providers/security/authentication';
 import { OAuth1 } from './providers/security/oauth1';
@@ -36,6 +37,7 @@ import { Http, XHRBackend, RequestOptions } from '@angular/http';
     AuthDb, 
     LoungeWeb,
     FoodWeb,
+    LbcTime,
     {
       provide: LbcHttp,
       useFactory: (backend: XHRBackend, defaultOptions: RequestOptions) => {

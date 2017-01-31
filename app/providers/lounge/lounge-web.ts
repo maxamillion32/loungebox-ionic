@@ -8,11 +8,12 @@ import { GeoLocation } from '../geo-location/geo-location';
 import { Logger1 } from '../utils/logger';
 import { LbcHttp } from '../web/http/lbc-http';
 import * as PouchDB from 'pouchdb';
-import {LbcSettings} from '../lbc-settings/lbc-settings';
+import { LbcSettings } from '../lbc-settings/lbc-settings';
 
 @Injectable()
 export class LoungeWeb {
     private db;
+    private api_base;
     //log : Logger1;
     constructor(private platform: Platform,
         private http: Http,
@@ -20,12 +21,12 @@ export class LoungeWeb {
         private utils: Utils,
         private geoLoc: GeoLocation,
         private log: Logger1,
-        private settings:LbcSettings
+        private settings: LbcSettings
     ) {
+        this.api_base = this.settings.configService.apiEndpoint
 
     }
 
-    readonly api_base =this.settings.configService.apiEndpoint
 
     getLoungesNearMe(): Observable<any> {
         return this.geoLoc

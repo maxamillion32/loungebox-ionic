@@ -6,14 +6,14 @@ import { LocalNotifications } from 'ionic-native';
 export class DeviceNotification {
 
     constructor(private navController: NavController) {
-        LocalNotifications.on("click", (notification, state) => {
-            let alert = Alert.create({
-                title: "Notification Clicked",
-                subTitle: "You just clicked the scheduled notification",
-                buttons: ["OK"]
-            });
-            this.navController.present(alert);
-        });
+        // LocalNotifications.on("click", (notification, state) => {
+        //     let alert = Alert.create({
+        //         title: "Notification Clicked",
+        //         subTitle: "You just clicked the scheduled notification",
+        //         buttons: ["OK"]
+        //     });
+        //     this.navController.present(alert);
+        // });
     }
 
     schedule(notificationMsg:ILocalNotificationMessage) {
@@ -32,9 +32,9 @@ export class DeviceNotification {
     clear(notificationId): Promise<any> {
         return LocalNotifications.clear(notificationId);
     }
-    hasPermission(): Promise<boolean> {
-        return LocalNotifications.hasPermission();
-    }
+    // hasPermission(): Promise<boolean> {
+    //     return LocalNotifications.hasPermission();
+    // }
 
 }
 

@@ -17,7 +17,7 @@ export class LbcHttp extends Http {
 
   get(url: string, options?: RequestOptionsArgs): Observable<Response> {
 
-    console.log('get...');
+    console.log('lbchttp:' + url + ':' + JSON.stringify(options));
 
     return super.get(url, options)
       .catch(err => {
@@ -34,6 +34,8 @@ export class LbcHttp extends Http {
       });
   }
   post(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
+        console.log('lbchttp post:' + url + ':' + JSON.stringify(body));
+
     return super.post(url, body, options)
       .catch(err => {
         return Observable.throw(err);
