@@ -14,6 +14,7 @@ import { Logger1 } from './providers/utils/logger';
 import { FoodWeb } from './providers/food/food-web';
 import { LoungeWeb } from './providers/lounge/lounge-web';
 import { LbcDevice } from './providers/device/device';
+import {DeviceNotification} from './providers/notification/device-notification';
 import { Authentication } from './providers/security/authentication';
 import { OAuth1 } from './providers/security/oauth1';
 import { AuthDb } from './providers/security/auth-db';
@@ -26,7 +27,7 @@ import { Http, XHRBackend, RequestOptions } from '@angular/http';
   providers: [DataService, PouchdbService, GeoLocation
     , { provide: APP_CONFIG_TOKEN, useValue: APP_CONFIG }
     , LbcSettings,
-    LbcDevice,
+    LbcDevice,DeviceNotification,
     Logger1,
     Utils,
     PouchdbInstance,

@@ -15,11 +15,11 @@ export class LoungeSelectionPage implements OnInit {
   lounges:any;
   constructor(
     public viewCtrl: ViewController
-    ,private loungeWeb:LoungeWeb
+    ,private loungeWebSvc:LoungeWeb
   ) {}
 
   ngOnInit(){
-      //this.lounges = this.loungeWeb.getLoungesNearMe();
+      this.lounges = this.loungeWebSvc.getLoungesNearMe();
 
   }
 

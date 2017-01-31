@@ -8,6 +8,7 @@ import { GeoLocation } from '../geo-location/geo-location';
 import { Logger1 } from '../utils/logger';
 import { LbcHttp } from '../web/http/lbc-http';
 import * as PouchDB from 'pouchdb';
+import {LbcSettings} from '../lbc-settings/lbc-settings';
 
 @Injectable()
 export class LoungeWeb {
@@ -18,24 +19,27 @@ export class LoungeWeb {
         private lbcHttp: LbcHttp,
         private utils: Utils,
         private geoLoc: GeoLocation,
-        private log: Logger1
+        private log: Logger1,
+        private settings:LbcSettings
     ) {
 
     }
 
-    // getLoungesNearMe(): Observable<any> {
-    //     return this.geoLoc
-    //         .getCurrentPosition()
-    //         .flatMap(pos =>
-    //             this.getLoungesNearMeFromServer(pos)
-    //         );
-    // }
+    readonly api_base =this.settings.configService.apiEndpoint
 
-    // private getLoungesNearMeFromServer(pos): Observable<any> {
+    getLoungesNearMe(): Observable<any> {
+        return this.geoLoc
+            .getCurrentPosition()
+            .flatMap(pos =>
+                this.getLoungesNearMeFromServer(pos)
+            );
+    }
 
-    //     return this.lbcHttp.get("https://localhost:44351/api/lounges/nearme?distance=1000&lat=" + pos.coords.latitude + "&lon=" + pos.coords.longitude + "&page=0&pageSize=20'")
-    //         .map(res => this.utils.extractAsJson(res))
-    //         .catch(err => this.utils.handleError(err));
-    // }
+    private getLoungesNearMeFromServer(pos): Observable<any> {
+
+        return this.lbcHttp.get(this.api_base + "/api/lounges/nearme?distance=1000&lat=" + pos.coords.latitude + "&lon=" + pos.coords.longitude + "&page=0&pageSize=20'")
+            .map(res => this.utils.extractAsJson(res))
+            .catch(err => this.utils.handleError(err));
+    }
 
 }

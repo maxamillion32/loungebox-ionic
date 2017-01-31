@@ -59,8 +59,8 @@ export class OAuth1 {
 
         return this.http
             .post(token_url,
-            this.getGrantTypeForRefreshToken(),
-            this.getHttpUrlEncodedRequestOptions())
+                this.getGrantTypeForRefreshToken(),
+                this.getHttpUrlEncodedRequestOptions())
             .map((res) => this.utils.extractAsJson(res))
             .map(res => this.authDB.addTokens(res.userName, res.access_toke, res.refresh_token))
             .catch((err) => this.utils.handleError(err));
@@ -70,7 +70,7 @@ export class OAuth1 {
         let refreshToken = '';
         let data = `grant_type=refresh_token
                     &refresh_token="+ ${refreshToken}
-                    + "&client_id=${this.device.getDeviceID()}`;
+                    &client_id=${this.device.getDeviceID()}`;
         this.log.log('Grant type:' + data);
         return data;
     }
