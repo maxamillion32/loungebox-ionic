@@ -15,6 +15,7 @@ import { FoodWeb } from './providers/food/food-web';
 import { LoungeWeb } from './providers/lounge/lounge-web';
 import { LbcDevice } from './providers/device/device';
 import {LbcTime} from './providers/time/lbc-time';
+import {LbcNetwork} from './providers/network/lbc-network';
 import {DeviceNotification} from './providers/notification/device-notification';
 import { Authentication } from './providers/security/authentication';
 import { OAuth1 } from './providers/security/oauth1';
@@ -38,6 +39,7 @@ import { Http, XHRBackend, RequestOptions } from '@angular/http';
     LoungeWeb,
     FoodWeb,
     LbcTime,
+    LbcNetwork,
     {
       provide: LbcHttp,
       useFactory: (backend: XHRBackend, defaultOptions: RequestOptions) => {

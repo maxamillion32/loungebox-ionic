@@ -1,5 +1,5 @@
 import { Network } from 'ionic-native';
-import { Injectable } from '@angular/core';
+import { Injectable,OnDestroy,OnInit } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { Observable } from 'rxjs/rx';
 import { Http, Response } from '@angular/http';
@@ -28,14 +28,19 @@ export class LbcNetwork implements OnDestroy, OnInit {
 
     ngOnInit() {
         this.setup();
+        this.determineNetworkType();
     }
 
     determineNetworkType(){
-        if (Network.type === 'wifi'){
+        if (Network.connection === 'wifi'){
             this.isOnlineThruWifi = true;
-        } else if(['2g','3g','4g'].indexOf(Network.type) > -1) {
+        } else if(['2g','3g','4g'].indexOf(Network.connection.toString()) > -1) {
             this.isOnlineThruData = true;
+        }else {
+            console.log('network:'+Network.connection);
         }
+
+        console.log('network:'+JSON.stringify(Network.connection));
     }
 
     ngOnDestroy() {
@@ -46,7 +51,7 @@ export class LbcNetwork implements OnDestroy, OnInit {
     }
 
     onChange(): Observable<any> {
-        return Network.onDisconnect().onChange();
+        return Network.onConnect();
     }
 
     onDisconnect(): Observable<any> {

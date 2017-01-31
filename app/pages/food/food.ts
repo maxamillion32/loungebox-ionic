@@ -16,7 +16,7 @@ import { Utils } from '../../providers/utils/utils';
 import { Logger1 } from '../../providers/utils/logger';
 import { FoodDetailPage } from '../food-detail/food-detail';
 import { FoodWeb } from '../../providers/food/food-web';
-
+import {LbcNetwork} from '../../providers/network/lbc-network';
 @Component({
   templateUrl: 'build/pages/food/food.html'
 })
@@ -30,7 +30,8 @@ export class FoodPage implements OnInit {
     private pouch: PouchdbService,
     private utils: Utils,
     private log: Logger1,
-    private web_server: FoodWeb
+    private web_server: FoodWeb,
+    private lbcNwSvc:LbcNetwork
   ) {
     
     this.nav = navCtrl;
@@ -40,7 +41,7 @@ export class FoodPage implements OnInit {
     
     this.foods = this.web_server.getFoodsNearByToday();
     this.whereFilter = "nearby";
-
+    this.lbcNwSvc.determineNetworkType();
   }
   navigateToDetailPage(item) {
 
