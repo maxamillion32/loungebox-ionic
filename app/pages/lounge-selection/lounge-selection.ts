@@ -1,6 +1,6 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ViewController } from 'ionic-angular';
-import {LoungeWeb} from '../../providers/lounge/lounge-web';
+import { LoungeWeb } from '../../providers/lounge/lounge-web';
 
 /*
   Generated class for the LoungeSelectionPage page.
@@ -12,21 +12,31 @@ import {LoungeWeb} from '../../providers/lounge/lounge-web';
   templateUrl: 'build/pages/lounge-selection/lounge-selection.html',
 })
 export class LoungeSelectionPage implements OnInit {
-  lounges:any;
+  lounges: any;
+  selectedLounges: any[];
+
   constructor(
     public viewCtrl: ViewController
-    ,private loungeWebSvc:LoungeWeb
-  ) {}
+    , private loungeWebSvc: LoungeWeb
+  ) { }
 
-  ngOnInit(){
-      this.lounges = this.loungeWebSvc.getLoungesNearMe();
+  ngOnInit() {
+    this.lounges = this.loungeWebSvc
+      .getLoungesNearMe();
 
+  }
+  selectLounge(lounge) {
+    // this.selectedLounges.push({
+    //   lounge: lounge
+    // });
+
+    lounge.IsSelected = lounge.IsSelected ? false : true;
   }
 
   closeModal() {
 
-  let data = { 'foo': 'bar' };
-   this.viewCtrl.dismiss(data);
+    let data = { 'selected-lounges': this.lounges.filter(l => l.IsSelected) };
+    this.viewCtrl.dismiss(data);
 
   }
 }

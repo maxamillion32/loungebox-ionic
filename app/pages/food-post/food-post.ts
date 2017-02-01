@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ModalController, NavParams } from 'ionic-angular';
 import {LoungeSelectionPage} from '../lounge-selection/lounge-selection';
+import {Food} from '../../models/food';
+import { FoodWeb } from '../../providers/food/food-web';
+
 /*
   Generated class for the FoodPostPage page.
 
@@ -12,14 +15,27 @@ import {LoungeSelectionPage} from '../lounge-selection/lounge-selection';
   templateUrl: 'build/pages/food-post/food-post.html',
 })
 export class FoodPostPage {
-
-  constructor(private navCtrl: NavController,public modalCtrl: ModalController) {
-
+  postModel :Food;
+  constructor(private navCtrl: NavController,
+  public modalCtrl: ModalController
+  ,private web_server: FoodWeb) {
+    this.postModel =new Food();
   }
 
-  presentWhenModal() {
-   let whenModal = this.modalCtrl.create(LoungeSelectionPage, { userId: 8675309 });
-   whenModal.present();
+  presentWhereModal() {
+   let whereModal = this.modalCtrl.create(LoungeSelectionPage, { userId: 8675309 });
+   whereModal.onDidDismiss(data => {
+     console.log(data);
+   });
+   whereModal.present();
  }
+
+ shareFood(){
+   this.web_server.shareFood(this.postModel);
+ }
+
+}
+
+class FoodPostModel {
 
 }

@@ -14,13 +14,13 @@
 
 
 <ion-content padding>
-<!--<ion-list radio-group>
+<ion-list radio-group>
   <ion-item *ngFor="let lounge of lounges | async">
     <ion-label>{{lounge.Name}}</ion-label>
-    <ion-radio value="friends" checked></ion-radio>
+    <ion-radio value="friends" (ionSelect)="selectLounge(lounge)" [checked]="lounge.IsSelected"></ion-radio>
   </ion-item>
  
-</ion-list>-->
+</ion-list>
 </ion-content>
 <ion-footer>
 	<ion-toolbar>

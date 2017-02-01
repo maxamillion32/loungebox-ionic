@@ -2,23 +2,23 @@
 	<ion-toolbar>
 		<ion-buttons start>
 			<button ion-button icon-only color="royal">
-        <ion-icon name="search"></ion-icon>
-      </button>
+				<ion-icon name="search"></ion-icon>
+			</button>
 		</ion-buttons>
 
-		<ion-segment [(ngModel)]="whereFilter">
-			<ion-segment-button color="primary" value="nearby">
+		<ion-segment [(ngModel)]="postModel.How">
+			<ion-segment-button value="make" color="primary">
 				Make
 			</ion-segment-button>
-			<ion-segment-button value="mylounges">
+			<ion-segment-button value="take">
 				Take
 			</ion-segment-button>
 
 		</ion-segment>
 		<ion-buttons end>
 			<button ion-button icon-only color="royal">
-        <ion-icon name="person-add"></ion-icon>
-      </button>
+				<ion-icon name="person-add"></ion-icon>
+			</button>
 		</ion-buttons>
 	</ion-toolbar>
 </ion-header>
@@ -27,11 +27,11 @@
 
 	<ion-item>
 		<ion-label color="primary" floating>What</ion-label>
-		<ion-input></ion-input>
+		<ion-input [(ngModel)]="postModel.Name"></ion-input>
 	</ion-item>
 	<ion-item>
 		<ion-label color="primary" floating>Where</ion-label>
-		<ion-input (focus)='presentWhenModal()'></ion-input>
+		<ion-input (focus)='presentWhereModal()'></ion-input>
 	</ion-item>
 
 	<ion-item>
@@ -50,10 +50,10 @@
 			day after
 		</ion-segment-button>
 	</ion-segment>
-<ion-label>Portions</ion-label>
+	<ion-label>Portions</ion-label>
 	<ion-item>
-		
-		<ion-range min="1" max="4" step="1" snaps="true" color="secondary" [(ngModel)]="portions">
+
+		<ion-range min="1" max="4" step="1" snaps="true" color="secondary" [(ngModel)]="postModel.Portions">
 
 			<ion-label range-left>1</ion-label>
 			<ion-label range-right>4</ion-label>
@@ -65,13 +65,13 @@
 
 	</ion-item>
 
-	<ion-segment color="danger">
+	<ion-segment [(ngModel)]="postModel.Thanks" color="danger">
 
-	
-		<ion-segment-button value="hybrid">
+
+		<ion-segment-button value="cash">
 			Cash
 		</ion-segment-button>
-		<ion-segment-button value="sat">
+		<ion-segment-button value="owe">
 			Owe one
 		</ion-segment-button>
 	</ion-segment>
@@ -81,7 +81,7 @@
 	<ion-toolbar>
 		<p>Ash, Misty, Brock</p>
 		<ion-buttons end>
-			<button ion-button icon-right color="royal">
+			<button (click)="shareFood()" ion-button icon-right color="royal">
         Post
         <ion-icon name="send"></ion-icon>
       </button>

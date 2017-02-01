@@ -43,6 +43,12 @@ export class FoodWeb {
             );
     }
 
+    shareFood(food : Food):Observable<Food>{
+        return this.lbcHttp.post(this.api_base,food)
+            .map(res => this.utils.extractAsJson(res))
+            .catch(err => this.utils.handleError(err));
+    }
+
     private getFoodsNearByTodayFromServer(pos): Observable<Food[]> {
 
         let query = `?distance=1000&lat=${pos.coords.latitude}&localUTCTime=${this.timeSvc.utcNowToISOString()}&lon=${pos.coords.longitude}&page=0&pageSize=20`;
