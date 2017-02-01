@@ -33,7 +33,10 @@
 		<ion-label color="primary" floating>Where</ion-label>
 		<ion-input (focus)='presentWhereModal()'></ion-input>
 	</ion-item>
-
+		<ion-label *ngFor="let lounge of selectedLounges"
+			(click)="manageLounge(lounge)" 
+			color="primary">{{lounge.Name}}
+		</ion-label>
 	<ion-item>
 
 

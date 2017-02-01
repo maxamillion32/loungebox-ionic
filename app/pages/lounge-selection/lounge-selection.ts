@@ -13,7 +13,7 @@ import { LoungeWeb } from '../../providers/lounge/lounge-web';
 })
 export class LoungeSelectionPage implements OnInit {
   lounges: any;
-  selectedLounges: any[];
+  //selectedLounges: any[];
 
   constructor(
     public viewCtrl: ViewController
@@ -35,7 +35,7 @@ export class LoungeSelectionPage implements OnInit {
 
   closeModal() {
 
-    let data = { 'selected-lounges': this.lounges.filter(l => l.IsSelected) };
+    let data = { selectedLounges: this.lounges.filter(l => l.IsSelected) };
     this.viewCtrl.dismiss(data);
 
   }

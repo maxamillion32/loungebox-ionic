@@ -4,6 +4,7 @@ import { ModalController, NavParams } from 'ionic-angular';
 import {LoungeSelectionPage} from '../lounge-selection/lounge-selection';
 import {Food} from '../../models/food';
 import { FoodWeb } from '../../providers/food/food-web';
+import {Logger1} from '../../providers/utils/logger';
 
 /*
   Generated class for the FoodPostPage page.
@@ -16,22 +17,30 @@ import { FoodWeb } from '../../providers/food/food-web';
 })
 export class FoodPostPage {
   postModel :Food;
+  selectedLounges:any[];
   constructor(private navCtrl: NavController,
   public modalCtrl: ModalController
-  ,private web_server: FoodWeb) {
+  ,private web_server: FoodWeb
+  ,private log:Logger1
+  ) {
     this.postModel =new Food();
   }
 
   presentWhereModal() {
    let whereModal = this.modalCtrl.create(LoungeSelectionPage, { userId: 8675309 });
-   whereModal.onDidDismiss(data => {
-     console.log(data);
+   whereModal.onDidDismiss(lounges => {
+     this.log.log('Selected lounges:' +JSON.stringify(lounges));
+     this.selectedLounges = lounges.selectedLounges;
    });
    whereModal.present();
  }
 
  shareFood(){
    this.web_server.shareFood(this.postModel);
+ }
+
+ manageLounge(lounge){
+   
  }
 
 }
