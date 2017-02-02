@@ -15,8 +15,23 @@
 <ion-content>
 	<!--<img src="build/images/food.png" />-->
 
-	<h1>{{food.Name}}</h1>
-	<h3>by {{food.ClubberID}}</h3>
+
+	<ion-item>
+		<!--<ion-avatar item-left>
+			<img src="build/images/food.png">
+		</ion-avatar>-->
+		<h1>{{food.Name}}</h1>
+		<ion-note item-right>
+			11h ago
+		</ion-note>
+	</ion-item>
+
+	<ion-item>
+		<ion-avatar item-left>
+			<img src="build/images/food.png">
+		</ion-avatar>
+		<h2>{{food.ClubberID}}</h2>
+	</ion-item>
 	<ion-row>
 		<!--<ion-col>
 			<button clear small danger>
@@ -36,11 +51,9 @@
           Follow Lounge
         </button>
 		</ion-col>
-		<ion-col text-right>
-			<ion-note>
-				11h ago
-			</ion-note>
-		</ion-col>
+		<!--<ion-col text-right>
+			
+		</ion-col>-->
 	</ion-row>
 	<ion-list>
 		<ion-list-header>
@@ -96,9 +109,9 @@
 		<p>Ash, Misty, Brock</p>
 		<ion-buttons end>
 			<button ion-button color="royal">
-        Request this food
-        <ion-icon name="send"></ion-icon>
-      </button>
+				Request this food
+				<ion-icon name="send"></ion-icon>
+			</button>
 		</ion-buttons>
 	</ion-toolbar>
 </ion-footer>

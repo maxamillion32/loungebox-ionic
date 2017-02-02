@@ -18,7 +18,7 @@ food :any;
   constructor(private navCtrl: NavController,navParams:NavParams) {
       console.log('NavController:' + JSON.stringify(navCtrl.id));
       
-      this.food = navParams.get('item');
+      this.food = navParams.get('food');
   }
 
 }

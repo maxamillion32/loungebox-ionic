@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Platform } from 'ionic-angular';
 import { Observable } from 'rxjs/rx';
-import { Food } from '../../models/food';
 import { Utils } from '../utils/utils';
 import { GeoLocation } from '../geo-location/geo-location';
 import { Logger1 } from '../utils/logger';
@@ -31,7 +30,7 @@ export class LoungeWeb {
     getLoungesNearMe(): Observable<any> {
         return this.geoLoc
             .getCurrentPosition()
-            .flatMap(pos =>
+            .map(pos =>
                 this.getLoungesNearMeFromServer(pos)
             );
     }
@@ -39,8 +38,8 @@ export class LoungeWeb {
     private getLoungesNearMeFromServer(pos): Observable<any> {
 
         return this.lbcHttp.get(this.api_base + "/api/lounges/nearme?distance=1000&lat=" + pos.coords.latitude + "&lon=" + pos.coords.longitude + "&page=0&pageSize=20'")
-            .map(res => this.utils.extractAsJson(res))
-            .catch(err => this.utils.handleError(err));
+            .map(res => this.utils.extractAsJson(res));
+        //.catch(err => this.utils.handleError(err));
     }
 
 }

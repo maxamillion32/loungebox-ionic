@@ -43,11 +43,11 @@ export class FoodPage implements OnInit {
     this.whereFilter = "nearby";
     this.lbcNwSvc.determineNetworkType();
   }
-  navigateToDetailPage(item) {
+  navigateToDetailPage(food) {
 
     console.log('inside button');
     this.nav.push(FoodDetailPage, {
-      item: item
+      food: food
     });
   }
 

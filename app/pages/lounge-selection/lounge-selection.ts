@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewController } from 'ionic-angular';
 import { LoungeWeb } from '../../providers/lounge/lounge-web';
+import { Logger1 } from '../../providers/utils/logger';
 
 /*
   Generated class for the LoungeSelectionPage page.
@@ -9,15 +10,16 @@ import { LoungeWeb } from '../../providers/lounge/lounge-web';
   Ionic pages and navigation.
 */
 @Component({
-  templateUrl: 'build/pages/lounge-selection/lounge-selection.html',
+  templateUrl: 'build/pages/lounge-selection/lounge-selection.html'
 })
 export class LoungeSelectionPage implements OnInit {
   lounges: any;
   //selectedLounges: any[];
 
   constructor(
-    public viewCtrl: ViewController
+      public viewCtrl: ViewController
     , private loungeWebSvc: LoungeWeb
+    , private log:Logger1
   ) { }
 
   ngOnInit() {

@@ -17,8 +17,8 @@ import * as PouchDB from 'pouchdb';
 @Injectable()
 export class FoodWeb {
     private db;
-    private api_base:string;
-    private api_nearby:string;
+    private api_base: string;
+    private api_nearby: string;
     //log : Logger1;
     constructor(private platform: Platform,
         private http: Http,
@@ -30,11 +30,11 @@ export class FoodWeb {
         private timeSvc: LbcTime
 
     ) {
- this. api_base   = this.settings.configService.apiEndpoint + '/api/foods';
-    this. api_nearby = this.api_base + '/nearme/today';
+        this.api_base = this.settings.configService.apiEndpoint + '/api/foods';
+        this.api_nearby = this.api_base + '/nearme/today';
 
     }
-   
+
     getFoodsNearByToday(): Observable<Food[]> {
         return this.geoLoc
             .getCurrentPosition()
@@ -43,10 +43,10 @@ export class FoodWeb {
             );
     }
 
-    shareFood(food : Food):Observable<Food>{
-        return this.lbcHttp.post(this.api_base,food)
+    shareFood(food: Food): Observable<Food> {
+        return this.lbcHttp.post(this.api_base, food)
             .map(res => this.utils.extractAsJson(res))
-            .catch(err => this.utils.handleError(err));
+        //.catch(err => this.utils.handleError(err));
     }
 
     private getFoodsNearByTodayFromServer(pos): Observable<Food[]> {
@@ -55,7 +55,7 @@ export class FoodWeb {
 
         return this.lbcHttp.get(this.api_nearby + query)
             .map(res => this.utils.extractAsJson(res))
-            .catch(err => this.utils.handleError(err));
+        //.catch(err => this.utils.handleError(err));
     }
 
 }
