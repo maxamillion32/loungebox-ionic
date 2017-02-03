@@ -41,7 +41,7 @@ export class Clubber implements OnInit {
     }
 
     setup() :Observable<IClubberModel> {
-        this.auth.getUser()
+        return this.auth.getUser()
             .finally(_ => {
                 this.finishCheck();
             });

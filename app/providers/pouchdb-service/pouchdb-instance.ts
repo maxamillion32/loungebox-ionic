@@ -12,7 +12,7 @@ export class PouchdbInstance {
         private log: Logger1
     ) { }
 
-    DB() {
+    get DB() {
 
         if (this.db == null) return this.initDB()
         else {
