@@ -1,11 +1,20 @@
 export interface IClubberModel {
-  ClubberID:string,
+  ClubberID: string,
 
 }
 
-export class ClubberModel implements IClubberModel{
-  constructor(){}
+export class ClubberModel implements IClubberModel {
+  constructor() { }
 
-  ClubberID:string;
+  ClubberID: string;
+  Badges: Badge[];
+
+}
+
+class Badge {
+  Name: string;
+  Value: string;
+  AcquiredAt: Date;
+  Source: string;
 }
 
