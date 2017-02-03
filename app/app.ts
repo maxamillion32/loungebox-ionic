@@ -23,10 +23,7 @@ import { AuthDb } from './providers/security/auth-db';
 import { LbcHttp } from './providers/web/http/lbc-http';
 import { Http, XHRBackend, RequestOptions } from '@angular/http';
 
-//"C:\Program Files\IIS Express\iisexpress.exe" /site:tinypots /config:"C:\Users\Anwar\Documents\Visual Studio 2015\Projects\loungebox\loungebox\.vs\config\applicationhost.config"
-@Component({
-  template: '<ion-nav [root]="rootPage"></ion-nav>',
-  providers: [DataService, PouchdbService, GeoLocation
+let providers = [DataService, PouchdbService, GeoLocation
     , { provide: APP_CONFIG_TOKEN, useValue: APP_CONFIG }
     , LbcSettings,
     LbcDevice,DeviceNotification,
@@ -47,7 +44,11 @@ import { Http, XHRBackend, RequestOptions } from '@angular/http';
       },
       deps: [ XHRBackend, RequestOptions]
     }
-  ]
+  ];
+//"C:\Program Files\IIS Express\iisexpress.exe" /site:tinypots /config:"C:\Users\Anwar\Documents\Visual Studio 2015\Projects\loungebox\loungebox\.vs\config\applicationhost.config"
+@Component({
+  template: '<ion-nav [root]="rootPage"></ion-nav>',
+  providers: providers
 })
 export class MyApp {
 
@@ -64,4 +65,4 @@ export class MyApp {
   }
 }
 
-ionicBootstrap(MyApp);
+ionicBootstrap(MyApp,providers);

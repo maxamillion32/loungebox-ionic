@@ -20,6 +20,9 @@ export class LbcHttp extends Http {
     console.log('lbchttp:' + url + ':' + JSON.stringify(options));
 
     return super.get(url, options)
+      .do(res => {
+          console.log('lbchttp Response:' + url + ':' + JSON.stringify(res));
+      })
       .catch(err => {
         console.log('catch');
         // if (err.status === 404) {
@@ -30,6 +33,8 @@ export class LbcHttp extends Http {
         //   return Observable.throw(err);
 
         // }
+                  console.log('lbchttp Error:' + url + ':' + JSON.stringify(err));
+
         return Observable.throw(err);
       });
   }
@@ -37,6 +42,9 @@ export class LbcHttp extends Http {
         console.log('lbchttp post:' + url + ':' + JSON.stringify(body));
 
     return super.post(url, body, options)
+     .do(res => {
+          console.log('lbchttp Response:' + url + ':' + JSON.stringify(res));
+      })
       .catch(err => {
         return Observable.throw(err);
         // console.log('catch');
